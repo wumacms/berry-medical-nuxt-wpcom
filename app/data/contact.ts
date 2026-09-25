@@ -58,3 +58,57 @@ export const contactFaqs: FaqItem[] = [
     a: "可以。实施难度大、既有院区空间受限的场地改造服务是我们的专长，团队拥有成熟的重载楼面强化、精密屏蔽测算与空间极致利用经验。",
   },
 ];
+
+export interface ContactPageData {
+  bannerBlock: {
+    title: string;
+    description: string;
+  };
+  wechatBlock: {
+    qrImage: string;
+    title: string;
+    description: string;
+  };
+  infoBlock: {
+    accordions: ContactAccordionItem[];
+  };
+  formBlock: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+  };
+  faqBlock: {
+    header: {
+      title: string;
+    };
+    faqs: FaqItem[];
+  };
+}
+
+export const contactPageData: ContactPageData = {
+  bannerBlock: {
+    title: "联系我们",
+    description: "期待与您携手“核”作，共筑安全合规的现代智慧核医学诊疗空间",
+  },
+  wechatBlock: {
+    qrImage: "/images/qrcode.png",
+    title: "微信扫码关注我们",
+    description: "直连资深技术工程师，在线解答工程疑问",
+  },
+  infoBlock: {
+    accordions: contactAccordionItems,
+  },
+  formBlock: {
+    header: {
+      title: "联系我们",
+      subtitle: "与我们取得联系，我们将快速响应您的需求",
+    },
+  },
+  faqBlock: {
+    header: {
+      title: "常见问题解答",
+    },
+    faqs: contactFaqs,
+  },
+};

@@ -16,8 +16,9 @@ export interface AboutArticleData {
   imageUrl?: string;
   tags?: string[];
 }
+import type { AboutPageBlocks } from "~/types/blocks";
 
-export interface AboutPageData {
+export interface AboutPageData extends AboutPageBlocks {
   banner: {
     title: string;
     description: string;
@@ -105,22 +106,39 @@ export const aboutArticle: AboutArticleData = {
   `,
 };
 
+const bannerBlock = {
+  title: "关于我们",
+  description: "十五年深耕核技术应用与辐射防护工程，打造高品质核医学场所建设标杆",
+};
+
+const ctaBlock = {
+  title: "需要了解针对您单位的定制方案？",
+  description: "我们的技术总工将为您提供免费的项目选址评估与技术建议。",
+  buttonText: "立即联系对接",
+  buttonLink: "/contact",
+};
+
 /**
- * “关于我们”完整页面配置
+ * “关于我们”区块化页面数据契约
+ */
+export const aboutPageData: AboutPageBlocks = {
+  bannerBlock,
+  articleBlock: aboutArticle,
+  ctaBlock,
+};
+
+/**
+ * “关于我们”完整页面配置（兼具区块化契约与平铺字段兼容）
  */
 export const aboutData: AboutPageData = {
-  banner: {
-    title: "关于我们",
-    description: "十五年深耕核技术应用与辐射防护工程，打造高品质核医学场所建设标杆",
-  },
+  bannerBlock,
+  articleBlock: aboutArticle,
+  ctaBlock,
+  banner: bannerBlock,
   article: aboutArticle,
   title: aboutArticle.title,
   summary: aboutArticle.summary,
   content: aboutArticle.content,
-  cta: {
-    title: "需要了解针对您单位的定制方案？",
-    description: "我们的技术总工将为您提供免费的项目选址评估与技术建议。",
-    buttonText: "立即联系对接",
-    buttonLink: "/contact",
-  },
+  cta: ctaBlock,
 };
+

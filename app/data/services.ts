@@ -118,34 +118,97 @@ export const serviceChapters: ServiceChapter[] = [
 ];
 
 export interface ServicesPageData {
-  banner: {
+  /** 1. 顶部横幅区块 */
+  bannerBlock: {
     title: string;
     description: string;
   };
-  sectionOverview: {
-    title: string;
-    subtitle: string;
+  /** 2. 三大篇章总览区块 */
+  overviewBlock: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+    chapters: ServiceChapter[];
   };
+  /** 3. 设计篇区块 */
+  designBlock: {
+    intro: string;
+    principles: string[];
+    features: { title: string; description: string }[];
+  };
+  /** 4. 施工篇区块 */
+  constructionBlock: {
+    features: { title: string; description: string }[];
+  };
+  /** 5. 设备篇与运维区块 */
+  equipmentBlock: {
+    features: { title: string; description: string }[];
+    cta: {
+      buttonText: string;
+      buttonLink: string;
+    };
+  };
+  /** 6. 行动召唤 CTA 区块 */
+  ctaBlock: {
+    buttonText: string;
+    buttonLink: string;
+  };
+
+  // 兼容别名
+  banner: { title: string; description: string };
+  sectionOverview: { title: string; subtitle: string };
   designIntro: string;
-  cta: {
-    text: string;
-    link: string;
-  };
+  cta: { text: string; link: string };
 }
 
-export const servicesPageData: ServicesPageData = {
-  banner: {
-    title: "服务体系",
-    description: "涵盖规划设计、辐射防护施工、衰变池净化工程、设备供应及数字孪生全生命周期闭环服务",
-  },
-  sectionOverview: {
+const bannerBlockData = {
+  title: "服务体系",
+  description: "涵盖规划设计、辐射防护施工、衰变池净化工程、设备供应及数字孪生全生命周期闭环服务",
+};
+
+const overviewBlockData = {
+  header: {
     title: "三大专业篇章",
     subtitle: "设计、施工、设备三大篇章，构建核医学场所建设完整交付矩阵",
   },
-  designIntro:
-    "选址、方案及专项施工图设计：新建、改建项目定制方案，融合功能优化、成本控制与美学设计，严格遵循行业规范，从选址到布局确保辐射防护、制药用药安全及空间利用合理。",
+  chapters: serviceChapters,
+};
+
+const designBlockData = {
+  intro: "选址、方案及专项施工图设计：新建、改建项目定制方案，融合功能优化、成本控制与美学设计，严格遵循行业规范，从选址到布局确保辐射防护、制药用药安全及空间利用合理。",
+  principles: layoutPrinciples,
+  features: serviceChapters[0]?.features || [],
+};
+
+const constructionBlockData = {
+  features: serviceChapters[1]?.features || [],
+};
+
+const ctaBlockData = {
+  buttonText: "立即预约项目工勘与需求沟通",
+  buttonLink: "/contact",
+};
+
+const equipmentBlockData = {
+  features: serviceChapters[2]?.features || [],
+  cta: ctaBlockData,
+};
+
+export const servicesPageData: ServicesPageData = {
+  bannerBlock: bannerBlockData,
+  overviewBlock: overviewBlockData,
+  designBlock: designBlockData,
+  constructionBlock: constructionBlockData,
+  equipmentBlock: equipmentBlockData,
+  ctaBlock: ctaBlockData,
+
+  // 兼容别名
+  banner: bannerBlockData,
+  sectionOverview: overviewBlockData.header,
+  designIntro: designBlockData.intro,
   cta: {
-    text: "立即预约项目工勘与需求沟通",
-    link: "/contact",
+    text: ctaBlockData.buttonText,
+    link: ctaBlockData.buttonLink,
   },
 };

@@ -120,3 +120,5 @@ export interface ContactFormData {
   type?: string;
   message?: string;
 }
+
+export * from "./blocks";

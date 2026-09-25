@@ -51,35 +51,66 @@ export const industryDrivers: IndustryItem[] = [
 ];
 
 export interface IndustryPageData {
-  banner: {
+  /** 1. 顶部横幅区块 */
+  bannerBlock: {
     title: string;
     description: string;
   };
+  /** 2. 全球健康挑战区块 */
+  challengesBlock: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+    items: IndustryItem[];
+  };
+  /** 3. 核心驱动力区块 */
+  driversBlock: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+    items: IndustryItem[];
+  };
+
+  // 兼容原有别名
+  banner: { title: string; description: string };
   sectionHeaders: {
-    challenges: {
-      title: string;
-      subtitle: string;
-    };
-    drivers: {
-      title: string;
-      subtitle: string;
-    };
+    challenges: { title: string; subtitle: string };
+    drivers: { title: string; subtitle: string };
   };
 }
 
-export const industryPageData: IndustryPageData = {
-  banner: {
-    title: "行业背景",
-    description: "核医学迎来精准医疗新时代，政策与临床需求双轮驱动科室场所高标规范化建设",
+const bannerBlockData = {
+  title: "行业背景",
+  description: "核医学迎来精准医疗新时代，政策与临床需求双轮驱动科室场所高标规范化建设",
+};
+
+const challengesBlockData = {
+  header: {
+    title: "全球健康挑战与核医学价值",
+    subtitle: "核医学在疾病早期诊断、精准分期、疗效评估及靶向治疗全流程中展现核心价值",
   },
+  items: industryChallenges,
+};
+
+const driversBlockData = {
+  header: {
+    title: "核医学发展的核心驱动力",
+    subtitle: "先进成像技术与放射性药物创新研发加速临床落地",
+  },
+  items: industryDrivers,
+};
+
+export const industryPageData: IndustryPageData = {
+  bannerBlock: bannerBlockData,
+  challengesBlock: challengesBlockData,
+  driversBlock: driversBlockData,
+
+  // 兼容别名
+  banner: bannerBlockData,
   sectionHeaders: {
-    challenges: {
-      title: "全球健康挑战与核医学价值",
-      subtitle: "核医学在疾病早期诊断、精准分期、疗效评估及靶向治疗全流程中展现核心价值",
-    },
-    drivers: {
-      title: "核医学发展的核心驱动力",
-      subtitle: "先进成像技术与放射性药物创新研发加速临床落地",
-    },
+    challenges: challengesBlockData.header,
+    drivers: driversBlockData.header,
   },
 };

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { serviceChapters, layoutPrinciples, servicesPageData } from "~/data/services";
+import { servicesPageData } from "~/data/services";
 
 const { setCanonical, SITE_URL } = useJsonLd();
 setCanonical("/services");
@@ -15,146 +15,33 @@ useSeoMeta({
 
 <template>
   <div class="page-services">
-    <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
+    <!-- 1. 顶部横幅区块 (Banner Block) -->
     <PageBanner
-      :title="servicesPageData.banner.title"
-      :description="servicesPageData.banner.description"
-      :breadcrumbs="[{ label: servicesPageData.banner.title }]"
+      :title="servicesPageData.bannerBlock.title"
+      :description="servicesPageData.bannerBlock.description"
+      :breadcrumbs="[{ label: servicesPageData.bannerBlock.title }]"
     />
 
-    <!-- 服务总览三大篇章导航 -->
-    <section class="py-12 bg-white border-b border-gray-100">
-      <div class="max-w-[1200px] mx-auto px-5">
-        <SectionHeader
-          :title="servicesPageData.sectionOverview.title"
-          :subtitle="servicesPageData.sectionOverview.subtitle"
-        />
+    <!-- 2. 服务总览三大篇章导航区块 (Overview Block) -->
+    <ServiceOverviewBlock
+      :header="servicesPageData.overviewBlock.header"
+      :chapters="servicesPageData.overviewBlock.chapters"
+    />
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div v-for="chap in serviceChapters" :key="chap.id"
-            class="bg-white border border-gray-200 rounded-sm p-8 hover:border-[#206be7] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div
-                class="w-14 h-14 rounded-full bg-blue-50 text-[#206be7] flex items-center justify-center text-2xl mb-6 group-hover:bg-[#206be7] group-hover:text-white transition duration-300">
-                <i :class="chap.icon"></i>
-              </div>
-              <span class="text-xs font-semibold text-[#206be7] tracking-wider uppercase">{{ chap.code }}</span>
-              <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">
-                {{ chap.title }}
-              </h3>
-              <p class="text-xs text-gray-500 leading-relaxed mb-6 font-normal">
-                {{ chap.description }}
-              </p>
-            </div>
-            <a :href="`#${chap.id}`"
-              class="text-[#206be7] text-xs font-medium flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-              <span>查看{{ chap.title }}详情</span>
-              <i class="fa-solid fa-arrow-right text-[10px]"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 3. 篇章一：设计篇区块 (Design Block) -->
+    <DesignChapterBlock
+      :chapter="servicesPageData.overviewBlock.chapters[0]!"
+      :intro="servicesPageData.designBlock.intro"
+      :principles="servicesPageData.designBlock.principles"
+    />
 
-    <!-- 篇章一：设计篇 -->
-    <section id="design" class="py-16 bg-gray-50/70 border-b border-gray-200/80 scroll-mt-20">
-      <div class="max-w-[1200px] mx-auto px-5">
-        <div class="flex items-center gap-4 mb-10 pb-4 border-b border-gray-200">
-          <div class="w-12 h-12 rounded-sm bg-[#206be7] text-white flex items-center justify-center text-xl shadow-md">
-            <i class="fa-solid fa-drafting-compass"></i>
-          </div>
-          <div>
-            <span class="text-xs font-bold text-[#206be7] tracking-wider uppercase">01 DESIGN CHAPTER</span>
-            <h2 class="text-2xl font-bold text-gray-900 tracking-tight">设计篇：科学选址与专业方案深化</h2>
-          </div>
-        </div>
+    <!-- 4. 篇章二：施工篇区块 (Construction Block) -->
+    <ConstructionChapterBlock :chapter="servicesPageData.overviewBlock.chapters[1]!" />
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start mb-12">
-          <div class="space-y-5 text-sm text-gray-600 leading-relaxed">
-            <p>
-              {{ servicesPageData.designIntro }}
-            </p>
-            <div class="bg-white rounded-sm p-6 border border-gray-200">
-              <h4 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-circle-check text-[#206be7]"></i>
-                布局总体设计原则
-              </h4>
-              <ul class="space-y-2 text-xs text-gray-600 list-none p-0 m-0">
-                <li v-for="(p, idx) in layoutPrinciples" :key="idx" class="flex items-start gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#206be7] mt-1.5 shrink-0"></span>
-                  <span>{{ p }}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div v-for="feat in serviceChapters[0]?.features" :key="feat.title"
-              class="bg-white border border-gray-200 rounded-sm p-5 hover:border-[#206be7] hover:shadow-md transition">
-              <i class="fa-solid fa-check text-[#206be7] text-sm mb-2 block"></i>
-              <h4 class="text-sm font-semibold text-gray-900 mb-1.5">{{ feat.title }}</h4>
-              <p class="text-xs text-gray-500 leading-relaxed">{{ feat.description }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 篇章二：施工篇 -->
-    <section id="construction" class="py-16 bg-white border-b border-gray-200/80 scroll-mt-20">
-      <div class="max-w-[1200px] mx-auto px-5">
-        <div class="flex items-center gap-4 mb-10 pb-4 border-b border-gray-200">
-          <div class="w-12 h-12 rounded-sm bg-[#206be7] text-white flex items-center justify-center text-xl shadow-md">
-            <i class="fa-solid fa-helmet-safety"></i>
-          </div>
-          <div>
-            <span class="text-xs font-bold text-[#206be7] tracking-wider uppercase">02 CONSTRUCTION CHAPTER</span>
-            <h2 class="text-2xl font-bold text-gray-900 tracking-tight">施工篇：辐射防护施工与环保洁净工程</h2>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div v-for="feat in serviceChapters[1]?.features" :key="feat.title"
-            class="bg-gray-50/70 border border-gray-200 rounded-sm p-6 hover:bg-white hover:border-[#206be7] hover:shadow-lg transition">
-            <div class="w-10 h-10 rounded-sm bg-blue-50 text-[#206be7] flex items-center justify-center text-lg mb-4">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h4 class="text-base font-semibold text-gray-900 mb-2">{{ feat.title }}</h4>
-            <p class="text-xs text-gray-600 leading-relaxed">{{ feat.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 篇章三：设备篇与运维 -->
-    <section id="equipment" class="py-16 bg-gray-50/70 scroll-mt-20">
-      <div class="max-w-[1200px] mx-auto px-5">
-        <div class="flex items-center gap-4 mb-10 pb-4 border-b border-gray-200">
-          <div class="w-12 h-12 rounded-sm bg-[#206be7] text-white flex items-center justify-center text-xl shadow-md">
-            <i class="fa-solid fa-microchip"></i>
-          </div>
-          <div>
-            <span class="text-xs font-bold text-[#206be7] tracking-wider uppercase">03 EQUIPMENT & OPERATION</span>
-            <h2 class="text-2xl font-bold text-gray-900 tracking-tight">设备篇：全套专业设备供应与数字孪生运维</h2>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div v-for="feat in serviceChapters[2]?.features" :key="feat.title"
-            class="bg-white border border-gray-200 rounded-sm p-6 hover:border-[#206be7] hover:shadow-lg transition">
-            <i class="fa-solid fa-cube text-[#206be7] text-lg mb-3 block"></i>
-            <h4 class="text-sm font-semibold text-gray-900 mb-2">{{ feat.title }}</h4>
-            <p class="text-xs text-gray-500 leading-relaxed">{{ feat.description }}</p>
-          </div>
-        </div>
-
-        <div class="text-center pt-6">
-          <NuxtLink :to="servicesPageData.cta.link" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-[15px] font-medium px-8 py-3.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group">
-            <span>{{ servicesPageData.cta.text }}</span>
-            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.75 transition-transform duration-200"></i>
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
+    <!-- 5. 篇章三：设备篇与运维区块 (Equipment & CTA Block) -->
+    <EquipmentChapterBlock
+      :chapter="servicesPageData.overviewBlock.chapters[2]!"
+      :cta="servicesPageData.equipmentBlock.cta"
+    />
   </div>
 </template>

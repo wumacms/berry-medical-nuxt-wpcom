@@ -105,3 +105,68 @@ export const aboutPreviewData: AboutPreviewData = {
   btnLink: "/about",
   imageUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop",
 };
+
+/** 首页完整区块数据架构 */
+export interface HomePageData {
+  heroBlock: {
+    slides: HeroSlide[];
+  };
+  servicesBlock: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+    items: ServiceFeatureItem[];
+  };
+  aboutBlock: AboutPreviewData;
+  casesBlock: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+  };
+  newsBlock: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+  };
+  contactBlock: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+  };
+}
+
+export const homePageData: HomePageData = {
+  heroBlock: {
+    slides: heroSlides,
+  },
+  servicesBlock: {
+    header: {
+      title: "三大专业篇章",
+      subtitle: "全流程闭环赋能核医学科场所高质量合规交付",
+    },
+    items: serviceFeatures,
+  },
+  aboutBlock: aboutPreviewData,
+  casesBlock: {
+    header: {
+      title: "精选产品与案例",
+      subtitle: "立足中原服务全国，铸就三十余所高品质放射防护与核医学示范工程",
+    },
+  },
+  newsBlock: {
+    header: {
+      title: "新闻资讯与前沿动态",
+      subtitle: "掌握政策前沿、行业资讯与前沿技术实战沉淀",
+    },
+  },
+  contactBlock: {
+    header: {
+      title: "联系我们",
+      subtitle: "与我们的核医学技术团队取得联系",
+    },
+  },
+};
