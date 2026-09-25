@@ -20,9 +20,11 @@ useSeoMeta({
 <template>
   <div class="page-advantages">
     <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
-    <PageBanner title="专业优势" description="十五年行业积淀与标准参编实力，以自主研发数字孪生技术驱动核医学场所高质量建设"
-      bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
-      :breadcrumbs="[{ label: '专业优势' }]" />
+    <PageBanner
+      title="专业优势"
+      description="十五年行业积淀与标准参编实力，以自主研发数字孪生技术驱动核医学场所高质量建设"
+      :breadcrumbs="[{ label: '专业优势' }]"
+    />
 
     <!-- 关键数据卡片 (Stats Row) -->
     <section class="py-12 bg-white border-b border-gray-100">

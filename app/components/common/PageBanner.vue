@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { DEFAULT_PAGE_BANNER_BG } from "~/data/navigation";
+
 interface BreadcrumbItem {
   label: string;
   to?: string;
@@ -22,7 +24,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
   description: "",
-  bgImage: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop",
+  bgImage: DEFAULT_PAGE_BANNER_BG,
   breadcrumbs: () => [],
 });
 </script>

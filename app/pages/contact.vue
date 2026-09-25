@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { companyContact } from "~/data/navigation";
+import { contactAccordionItems, contactFaqs } from "~/data/contact";
 
 const { setCanonical, SITE_URL } = useJsonLd();
 setCanonical("/contact");
@@ -16,59 +16,18 @@ const toggleAccordion = (index: number) => {
   activeAccordion.value = activeAccordion.value === index ? null : index;
 };
 
-const accordionItems = [
-  {
-    title: "公司地址",
-    icon: "fa-solid fa-location-dot",
-    content: companyContact.address,
-    desc: "乘车路线：郑州地铁1号线或高新技术开发区快速公交均可便捷到达。",
-  },
-  {
-    title: "联系电话",
-    icon: "fa-solid fa-phone",
-    content: `${companyContact.phone} / ${companyContact.phoneSecondary}`,
-    desc: "工作时段：周一至周日 8:30 - 18:30，节假日正常接待。",
-  },
-  {
-    title: "电子邮箱",
-    icon: "fa-regular fa-envelope",
-    content: companyContact.email,
-    desc: "欢迎发送项目图纸或招标文件至邮箱，我们将于24小时内反馈技术方案建议。",
-  },
-  {
-    title: "商务合作与技术咨询",
-    icon: "fa-solid fa-handshake",
-    content: "新建核医学科规划 · 辐射防护工程实施 · 衰变池系统 · 环评卫评药监验收",
-    desc: "技术团队拥有15+年核技术应用与屏蔽设计实战经验，覆盖全国主要省份。",
-  },
-];
-
 // 使用 composable 统一表单逻辑
 const { form: contactForm, isSubmitting, submitSuccess, submitForm: handleSubmit } = useContactForm();
-
-// FAQ items
-const faqs = [
-  {
-    q: "核医学场所建设一般需要多长时间？",
-    a: "项目周期因场所规模、改造难度及审批流程而异，通常为3-12个月不等。我们会在方案设计阶段提供详细的时间规划与工期倒排表。",
-  },
-  {
-    q: "是否提供环评、卫评及药监验收支持？",
-    a: "是的，我们提供从环境影响评价、职业病危害放射防护预评价/控制效果评价到药监放射性药品使用许可证（第四类）的全流程技术咨询与专家指导服务。",
-  },
-  {
-    q: "有限空间的场地改造能否承接？",
-    a: "可以。实施难度大、既有院区空间受限的场地改造服务是我们的专长，团队拥有成熟的重载楼面强化、精密屏蔽测算与空间极致利用经验。",
-  },
-];
 </script>
 
 <template>
   <div class="page-contact">
     <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
-    <PageBanner title="联系我们" description="期待与您携手“核”作，共筑安全合规的现代智慧核医学诊疗空间"
-      bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
-      :breadcrumbs="[{ label: '联系我们' }]" />
+    <PageBanner
+      title="联系我们"
+      description="期待与您携手“核”作，共筑安全合规的现代智慧核医学诊疗空间"
+      :breadcrumbs="[{ label: '联系我们' }]"
+    />
 
     <div class="max-w-[1200px] mx-auto px-5 mb-16">
       <!-- 1. 上半部分：微信二维码卡片 + 手风琴信息列表 -->
@@ -86,7 +45,7 @@ const faqs = [
 
         <!-- 右侧手风琴列表 (col-md-8) -->
         <div class="md:col-span-8 space-y-3">
-          <div v-for="(item, idx) in accordionItems" :key="idx"
+          <div v-for="(item, idx) in contactAccordionItems" :key="idx"
             class="border border-gray-200 rounded-sm overflow-hidden bg-white transition-all">
             <button type="button"
               class="w-full px-5 py-4 flex items-center justify-between text-left cursor-pointer transition-colors"
@@ -157,7 +116,7 @@ const faqs = [
           <span>常见问题解答</span>
         </h3>
         <div class="space-y-4">
-          <div v-for="(faq, idx) in faqs" :key="idx" class="p-4 bg-white border border-gray-200 rounded-sm">
+          <div v-for="(faq, idx) in contactFaqs" :key="idx" class="p-4 bg-white border border-gray-200 rounded-sm">
             <h4 class="text-sm font-semibold text-gray-900 mb-1.5 flex items-center gap-2">
               <span
                 class="w-5 h-5 rounded-full bg-blue-100 text-[#206be7] text-[11px] flex items-center justify-center font-bold">问</span>

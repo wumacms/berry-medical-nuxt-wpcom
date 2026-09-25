@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { serviceChapters } from "~/data/services";
+import { serviceChapters, layoutPrinciples } from "~/data/services";
 
 const { setCanonical, SITE_URL } = useJsonLd();
 setCanonical("/services");
@@ -11,22 +11,16 @@ useSeoMeta({
   ogDescription: "涵盖工艺流程规划、辐射屏蔽测算、衰变池施工、智能化设备集成及环评药监验收的全流程一站式服务。",
   ogUrl: `${SITE_URL}/services`,
 });
-
-const layoutPrinciples = [
-  "使工作场所的外照射水平和放射性污染发生的概率达到国家标准最小化。",
-  "保持影像检查设备工作场所内极低辐射本底水平，避免对微小病灶成像质量造成干扰。",
-  "控制区入口和出口设置门禁权限控制、互锁铅防护门与单向动线，限制受检者与污染扩散。",
-  "在分装和给药室出口设计专用卫生通过间与气闸缓冲，强制进行表面污染监测。",
-  "放射性废水经专用三级或多级串联衰变池充分衰变达标后，方可排入医院污水处理管网。",
-];
 </script>
 
 <template>
   <div class="page-services">
     <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
-    <PageBanner title="服务体系" description="涵盖规划设计、辐射防护施工、衰变池净化工程、设备供应及数字孪生全生命周期闭环服务"
-      bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
-      :breadcrumbs="[{ label: '服务体系' }]" />
+    <PageBanner
+      title="服务体系"
+      description="涵盖规划设计、辐射防护施工、衰变池净化工程、设备供应及数字孪生全生命周期闭环服务"
+      :breadcrumbs="[{ label: '服务体系' }]"
+    />
 
     <!-- 服务总览三大篇章导航 -->
     <section class="py-12 bg-white border-b border-gray-100">

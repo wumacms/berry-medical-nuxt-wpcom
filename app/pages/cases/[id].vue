@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CaseItem } from "~/types";
-import { caseList } from "~/data/cases";
+import { caseList, caseTechSpecs } from "~/data/cases";
 
 const route = useRoute();
 const caseId = computed(() => Number(route.params.id) || 1);
@@ -202,25 +202,10 @@ useSeoMeta({
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-200 text-gray-600">
-                    <tr>
-                      <td class="py-3 px-4 font-medium text-gray-900">辐射防护剂量</td>
-                      <td class="py-3 px-4">GB 18871-2002、GBZ 120-2020</td>
-                      <td class="py-3 px-4">控制区外公众剂量率 &lt; 2.5 µSv/h，远优于国标要求</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 px-4 font-medium text-gray-900">废水衰变池</td>
-                      <td class="py-3 px-4">HJ 1188-2021 核医学辐射安全</td>
-                      <td class="py-3 px-4">多级推流式/间歇式全自动智能衰变池，耐酸防腐双层防漏</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 px-4 font-medium text-gray-900">负压通风净化</td>
-                      <td class="py-3 px-4">GB 50333 医院洁净手术部规范</td>
-                      <td class="py-3 px-4">分级负压梯度、定风量变频控制、活性炭高效微粒过滤装置</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 px-4 font-medium text-gray-900">数字化态势感知</td>
-                      <td class="py-3 px-4">贝瑞企业级数字孪生规范</td>
-                      <td class="py-3 px-4">瑞核V1.0引擎，微秒级数据传感上报，3D空间全景可视</td>
+                    <tr v-for="spec in caseTechSpecs" :key="spec.category">
+                      <td class="py-3 px-4 font-medium text-gray-900">{{ spec.category }}</td>
+                      <td class="py-3 px-4">{{ spec.standard }}</td>
+                      <td class="py-3 px-4">{{ spec.indicator }}</td>
                     </tr>
                   </tbody>
                 </table>

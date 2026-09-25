@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { companyContact } from "~/data/navigation";
+import { companyContact, footerLinkGroups, footerBottomLinks } from "~/data/navigation";
 
 const currentYear = new Date().getFullYear();
 const wechatPopup = ref(false);
@@ -10,65 +10,14 @@ const wechatPopup = ref(false);
     <div class="max-w-[1200px] mx-auto px-5">
       <!-- 4列 Widget 布局 -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-gray-800/80">
-        <!-- 分类 Widget (col-span-2) -->
-        <div class="lg:col-span-2">
+        <!-- 动态分栏 Widget -->
+        <div v-for="group in footerLinkGroups" :key="group.title" :class="group.colSpan">
           <h3 class="text-white text-base font-semibold mb-5 pb-2 border-b border-gray-700/60 inline-block">
-            分类目录
+            {{ group.title }}
           </h3>
           <ul class="space-y-2.5 text-xs text-gray-400 list-none p-0 m-0">
-            <li>
-              <NuxtLink to="/cases" class="hover:text-white hover:underline transition">产品展示</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/news?category=company" class="hover:text-white hover:underline transition">公司新闻</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/news?category=industry" class="hover:text-white hover:underline transition">行业动态</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/news?category=tech" class="hover:text-white hover:underline transition">技术分享</NuxtLink>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 页面 Widget (col-span-2) -->
-        <div class="lg:col-span-2">
-          <h3 class="text-white text-base font-semibold mb-5 pb-2 border-b border-gray-700/60 inline-block">
-            快捷页面
-          </h3>
-          <ul class="space-y-2.5 text-xs text-gray-400 list-none p-0 m-0">
-            <li>
-              <NuxtLink to="/about" class="hover:text-white hover:underline transition">关于我们</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/services" class="hover:text-white hover:underline transition">服务内容</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/advantages" class="hover:text-white hover:underline transition">专业优势</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/contact" class="hover:text-white hover:underline transition">联系我们</NuxtLink>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 解决方案 Widget (col-span-3) -->
-        <div class="lg:col-span-3">
-          <h3 class="text-white text-base font-semibold mb-5 pb-2 border-b border-gray-700/60 inline-block">
-            服务体系
-          </h3>
-          <ul class="space-y-2.5 text-xs text-gray-400 list-none p-0 m-0">
-            <li>
-              <NuxtLink to="/services#design" class="hover:text-white hover:underline transition">设计篇 · 选址规划与施工图</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/services#construction" class="hover:text-white hover:underline transition">施工篇 · 辐射防护与衰变池</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/services#equipment" class="hover:text-white hover:underline transition">设备篇 · 数字孪生与全周期运维</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/contact#faq" class="hover:text-white hover:underline transition">常见问题 · 环评卫评药监答疑</NuxtLink>
+            <li v-for="link in group.links" :key="link.title">
+              <NuxtLink :to="link.path" class="hover:text-white hover:underline transition">{{ link.title }}</NuxtLink>
             </li>
           </ul>
         </div>
@@ -143,11 +92,10 @@ const wechatPopup = ref(false);
           </a>
         </p>
         <div class="flex items-center gap-4">
-          <NuxtLink to="/privacy" class="hover:text-white transition">隐私条款</NuxtLink>
-          <span>·</span>
-          <NuxtLink to="/contact" class="hover:text-white transition">技术支持</NuxtLink>
-          <span>·</span>
-          <NuxtLink to="/about" class="hover:text-white transition">企业资质</NuxtLink>
+          <template v-for="(link, index) in footerBottomLinks" :key="link.title">
+            <span v-if="index > 0">·</span>
+            <NuxtLink :to="link.path" class="hover:text-white transition">{{ link.title }}</NuxtLink>
+          </template>
         </div>
       </div>
     </div>

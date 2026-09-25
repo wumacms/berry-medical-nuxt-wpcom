@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { companyContact } from "~/data/navigation";
+import { aboutData } from "~/data/about";
 
 const { setCanonical, SITE_URL } = useJsonLd();
 setCanonical("/about");
@@ -14,9 +15,11 @@ useSeoMeta({
 <template>
   <div class="page-about">
     <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
-    <PageBanner title="关于我们" description="十五年深耕核技术应用与辐射防护工程，打造高品质核医学场所建设标杆"
-      bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
-      :breadcrumbs="[{ label: '关于我们' }]" />
+    <PageBanner
+      :title="aboutData.banner.title"
+      :description="aboutData.banner.description"
+      :breadcrumbs="[{ label: aboutData.banner.title }]"
+    />
 
     <div class="max-w-[1200px] mx-auto px-5">
       <div class="flex flex-col lg:flex-row gap-9 items-start mb-15">
@@ -26,63 +29,42 @@ useSeoMeta({
             <div class="space-y-6 text-[15px] text-[#333333] leading-[1.85]">
               <p class="text-base text-gray-700 leading-relaxed font-normal">
                 <strong class="text-gray-900 font-semibold">{{ companyContact.name }}</strong>
-                是一家专业从事核医学科工作场所、放射性药物制药净化车间及核辐射实验室规划设计、屏蔽施工、环境评估与智能化运维的综合型工程科技企业。
+                {{ aboutData.intro.paragraphs[0] }}
               </p>
-              <p>
-                公司立足中原，业务网络覆盖全国主要省市。核心技术团队深耕核技术应用、辐射安全防护与特种净化工程十五年以上，累计为国内30余家大型综合医院及科研院所提供高水准的全生命周期交钥匙服务，工程一次性验收达标率保持在100%。
+              <p v-for="(paragraph, index) in aboutData.intro.paragraphs.slice(1)" :key="index">
+                {{ paragraph }}
               </p>
 
               <h2 class="text-[22px] font-semibold text-[#262626] mt-8 mb-4 pl-3 border-l-4 border-[#206be7] leading-snug">
-                关于贝瑞医疗
+                {{ aboutData.overview.title }}
               </h2>
               <p>
-                核医学科场所建设涉及非密封放射性核素操作、精密影像设备重载基底、高标射线屏蔽、负压气流控制及放射性废液废气达标排放等诸多严苛规范，技术门槛高、跨学科交叉多。贝瑞医疗打破了传统设计院不懂工艺动线、施工队不懂辐射安全、设备商不懂法规验收的行业壁垒，构建了“设计
-                - 施工 - 设备 - 验收 - 运维”一体化的闭环服务体系。
+                {{ aboutData.overview.description }}
               </p>
 
               <figure class="my-6 rounded-sm overflow-hidden border border-gray-100">
-                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop"
-                  alt="贝瑞医疗核医学场所建设实景" class="w-full h-auto rounded-sm object-cover" />
-                <figcaption class="text-xs text-gray-400 text-center mt-2.5">贝瑞医疗实施完成的现代化高品质核医学科室</figcaption>
+                <img :src="aboutData.overview.image.url"
+                  :alt="aboutData.overview.image.caption" class="w-full h-auto rounded-sm object-cover" />
+                <figcaption class="text-xs text-gray-400 text-center mt-2.5">{{ aboutData.overview.image.caption }}</figcaption>
               </figure>
 
               <h2 class="text-[22px] font-semibold text-[#262626] mt-8 mb-4 pl-3 border-l-4 border-[#206be7] leading-snug">
-                贝瑞医疗的核心优势
+                {{ aboutData.advantages.title }}
               </h2>
 
-              <p><strong class="text-gray-900 font-semibold">一、专业资深开发与工程团队</strong></p>
-              <p>
-                团队核心成员均来自于核物理、辐射防护工程、医疗暖通净化及建筑声学领域，拥有丰富的大型三甲医院核医学科新建与复杂旧院区有限空间改造经验。
-              </p>
-
-              <p><strong class="text-gray-900 font-semibold">二、全流程便捷化项目管理</strong></p>
-              <p>
-                从前期选址可行性勘测、科室动线优化，到专项防护施工图绘制、工程落地实施，实行项目经理终身负责制，统一进度把控与高标质量核验。
-              </p>
-
-              <p><strong class="text-gray-900 font-semibold">三、全生命周期资质合规验收保障</strong></p>
-              <p>
-                对标国家环保、卫健委及国家药监局规范，全程协同配合完成《环境影响评价报告》审批、放射卫生防护评价检测，以及放射性药品使用许可证（第四类）申报，确保客户平稳快速取证。
-              </p>
-
-              <p><strong class="text-gray-900 font-semibold">四、前沿数字孪生科技创新</strong></p>
-              <p>
-                自主研发“瑞核V1.0数字孪生态势感知平台”，运用高精度3D空间仿真引擎与IoT物联网微传感器，实时监控场所空间辐射剂量分布、负压梯度与排风机组健康度。
-              </p>
-
-              <p><strong class="text-gray-900 font-semibold">五、长久无忧终身售后运维</strong></p>
-              <p>
-                工程交付后提供专属项目档案，设立7×24小时应急响应通道，定期回访巡检与屏蔽效能复测，为科室平稳长久运行提供坚强后盾。
-              </p>
+              <template v-for="item in aboutData.advantages.items" :key="item.number">
+                <p><strong class="text-gray-900 font-semibold">{{ item.number }}、{{ item.title }}</strong></p>
+                <p>{{ item.description }}</p>
+              </template>
 
               <h2 class="text-[22px] font-semibold text-[#262626] mt-8 mb-4 pl-3 border-l-4 border-[#206be7] leading-snug">
-                企业使命与愿景
+                {{ aboutData.vision.title }}
               </h2>
               <blockquote class="border-l-4 border-[#206be7] bg-slate-50 px-5 py-4 my-6 rounded-r-sm italic text-slate-600 leading-relaxed font-normal">
-                “以科学严谨的核工标准护航医患安全，以科技创新驱动现代智慧核医学场所高质量发展。”
+                {{ aboutData.vision.quote }}
               </blockquote>
               <p>
-                面对全国核医学诊疗资源下沉与精准靶向诊疗技术的迅猛发展，贝瑞医疗将持续秉持“专业、求实、创新、共赢”的理念，携手更多医疗健康机构共筑现代智慧放射诊疗空间新蓝图！
+                {{ aboutData.vision.description }}
               </p>
             </div>
 
@@ -90,11 +72,11 @@ useSeoMeta({
             <div
               class="mt-10 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 bg-gray-50/70 p-6 rounded-sm">
               <div>
-                <h4 class="text-base font-semibold text-gray-900">需要了解针对您单位的定制方案？</h4>
-                <p class="text-xs text-gray-500 mt-1">我们的技术总工将为您提供免费的项目选址评估与技术建议。</p>
+                <h4 class="text-base font-semibold text-gray-900">{{ aboutData.cta.title }}</h4>
+                <p class="text-xs text-gray-500 mt-1">{{ aboutData.cta.description }}</p>
               </div>
-              <NuxtLink to="/contact" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-sm font-medium px-6 py-2.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer shrink-0 group">
-                <span>立即联系对接</span>
+              <NuxtLink :to="aboutData.cta.buttonLink" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-sm font-medium px-6 py-2.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer shrink-0 group">
+                <span>{{ aboutData.cta.buttonText }}</span>
                 <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.75 transition-transform duration-200"></i>
               </NuxtLink>
             </div>

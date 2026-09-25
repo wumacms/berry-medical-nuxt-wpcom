@@ -25,9 +25,11 @@ const menuItems = [
 <template>
   <div class="page-privacy">
     <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
-    <PageBanner title="隐私政策" description="贝瑞医疗高度重视用户个人信息安全与隐私保护"
-      bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
-      :breadcrumbs="[{ label: '隐私政策' }]" />
+    <PageBanner
+      title="隐私政策"
+      description="贝瑞医疗高度重视用户个人信息安全与隐私保护"
+      :breadcrumbs="[{ label: '隐私政策' }]"
+    />
 
     <div class="max-w-[1200px] mx-auto px-5 mb-16">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

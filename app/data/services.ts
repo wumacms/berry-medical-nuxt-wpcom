@@ -1,5 +1,14 @@
 import type { ServiceChapter } from "~/types";
 
+/** 核医学科总体布局设计原则 */
+export const layoutPrinciples: string[] = [
+  "使工作场所的外照射水平和放射性污染发生的概率达到国家标准最小化。",
+  "保持影像检查设备工作场所内极低辐射本底水平，避免对微小病灶成像质量造成干扰。",
+  "控制区入口和出口设置门禁权限控制、互锁铅防护门与单向动线，限制受检者与污染扩散。",
+  "在分装和给药室出口设计专用卫生通过间与气闸缓冲，强制进行表面污染监测。",
+  "放射性废水经专用三级或多级串联衰变池充分衰变达标后，方可排入医院污水处理管网。",
+];
+
 export const serviceChapters: ServiceChapter[] = [
   {
     id: "design",

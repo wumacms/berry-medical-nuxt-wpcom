@@ -1,5 +1,35 @@
 import type { CaseItem } from "~/types";
 
+export interface CaseTechSpec {
+  category: string;
+  standard: string;
+  indicator: string;
+}
+
+/** 案例详情页技术指标与规范执行表通用数据 */
+export const caseTechSpecs: CaseTechSpec[] = [
+  {
+    category: "辐射防护剂量",
+    standard: "GB 18871-2002、GBZ 120-2020",
+    indicator: "控制区外公众剂量率 < 2.5 µSv/h，远优于国标要求",
+  },
+  {
+    category: "废水衰变池",
+    standard: "HJ 1188-2021 核医学辐射安全",
+    indicator: "多级推流式/间歇式全自动智能衰变池，耐酸防腐双层防漏",
+  },
+  {
+    category: "负压通风净化",
+    standard: "GB 50333 医院洁净手术部规范",
+    indicator: "分级负压梯度、定风量变频控制、活性炭高效微粒过滤装置",
+  },
+  {
+    category: "数字化态势感知",
+    standard: "贝瑞企业级数字孪生规范",
+    indicator: "瑞核V1.0引擎，微秒级数据传感上报，3D空间全景可视",
+  },
+];
+
 export const caseStats = [
   {
     icon: "fa-solid fa-building-circle-check",

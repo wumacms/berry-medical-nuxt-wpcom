@@ -42,7 +42,6 @@ const selectCategory = (catKey: string) => {
     <PageBanner
       title="产品列表"
       description="专注于核医学场所选址设计、辐射防护施工、衰变池系统与综合合规验收标杆工程展示"
-      bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
       :breadcrumbs="[{ label: '产品列表' }]"
     />
 

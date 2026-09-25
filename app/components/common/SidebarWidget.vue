@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { caseList } from "~/data/cases";
-import { companyContact } from "~/data/navigation";
+import { companyContact, sidebarNav } from "~/data/navigation";
 
 interface Props {
   activePath?: string;
@@ -10,14 +10,7 @@ interface Props {
 const props = defineProps<Props>();
 const route = useRoute();
 
-const navItems = [
-  { label: "产品与案例", path: "/cases" },
-  { label: "公司新闻", path: "/news?category=company" },
-  { label: "行业动态", path: "/news?category=industry" },
-  { label: "技术分享", path: "/news?category=tech" },
-  { label: "关于我们", path: "/about" },
-  { label: "联系我们", path: "/contact" },
-];
+const navItems = sidebarNav;
 
 const isActive = (itemPath: string) => {
   if (props.activePath && props.activePath === itemPath) return true;

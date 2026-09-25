@@ -1,5 +1,9 @@
 import type { NavItem } from "~/types";
 
+/** 全局默认二级页横幅背景图 */
+export const DEFAULT_PAGE_BANNER_BG =
+  "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop";
+
 /**
  * 桌面端 + 移动端主导航菜单数据源
  * TheNavbar 通过 v-for 遍历此数组进行渲染
@@ -49,23 +53,64 @@ export const mainNav: NavItem[] = [
   { title: "联系我们", path: "/contact" },
 ];
 
-export const footerQuickLinks: NavItem[] = [
-  { title: "行业背景", path: "/industry" },
-  { title: "企业简介", path: "/company" },
-  { title: "服务内容", path: "/services" },
-  { title: "专业优势", path: "/advantages" },
-  { title: "业绩介绍", path: "/cases" },
-  { title: "新闻动态", path: "/news" },
+/** 侧边栏通用快捷导航数据源 (SidebarWidget) */
+export const sidebarNav: { label: string; path: string }[] = [
+  { label: "产品与案例", path: "/cases" },
+  { label: "公司新闻", path: "/news?category=company" },
+  { label: "行业动态", path: "/news?category=industry" },
+  { label: "技术分享", path: "/news?category=tech" },
+  { label: "关于我们", path: "/about" },
+  { label: "联系我们", path: "/contact" },
 ];
 
-export const footerServiceLinks: NavItem[] = [
-  { title: "设计篇", path: "/services#design" },
-  { title: "施工篇", path: "/services#construction" },
-  { title: "设备篇", path: "/services#equipment" },
-  { title: "数字孪生", path: "/advantages#digital" },
-  { title: "常见问题", path: "/contact#faq" },
+export interface FooterLinkGroup {
+  title: string;
+  colSpan: string;
+  links: { title: string; path: string }[];
+}
+
+/** 页脚分栏导航数据源 (TheFooter) */
+export const footerLinkGroups: FooterLinkGroup[] = [
+  {
+    title: "分类目录",
+    colSpan: "lg:col-span-2",
+    links: [
+      { title: "产品展示", path: "/cases" },
+      { title: "公司新闻", path: "/news?category=company" },
+      { title: "行业动态", path: "/news?category=industry" },
+      { title: "技术分享", path: "/news?category=tech" },
+    ],
+  },
+  {
+    title: "快捷页面",
+    colSpan: "lg:col-span-2",
+    links: [
+      { title: "关于我们", path: "/about" },
+      { title: "服务内容", path: "/services" },
+      { title: "专业优势", path: "/advantages" },
+      { title: "联系我们", path: "/contact" },
+    ],
+  },
+  {
+    title: "服务体系",
+    colSpan: "lg:col-span-3",
+    links: [
+      { title: "设计篇 · 选址规划与施工图", path: "/services#design" },
+      { title: "施工篇 · 辐射防护与衰变池", path: "/services#construction" },
+      { title: "设备篇 · 数字孪生与全周期运维", path: "/services#equipment" },
+      { title: "常见问题 · 环评卫评药监答疑", path: "/contact#faq" },
+    ],
+  },
 ];
 
+/** 页脚底部辅助链接 */
+export const footerBottomLinks = [
+  { title: "隐私条款", path: "/privacy" },
+  { title: "技术支持", path: "/contact" },
+  { title: "企业资质", path: "/about" },
+];
+
+/** 企业官方联络与主体配置 */
 export const companyContact = {
   name: "贝瑞医疗科技（郑州）有限公司",
   enName: "Berry Medical Technology (Zhengzhou) Co., Ltd.",

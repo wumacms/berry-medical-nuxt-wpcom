@@ -137,6 +137,12 @@ const highlightKeyword = (text: string) => {
   return safeText.replace(regex, `<mark class="bg-yellow-200 text-gray-900 rounded-xs px-0.5">$1</mark>`);
 };
 
+const hotSearchKeywords = ["核医学科", "辐射防护", "衰变池", "数字孪生", "GMP验收"];
+const setKeywordAndSearch = (kw: string) => {
+  query.value = kw;
+  handleSearch();
+};
+
 const { setCanonical } = useJsonLd();
 setCanonical("/search");
 
@@ -152,7 +158,6 @@ useSeoMeta({
     <PageBanner
       :title="currentSearchText ? `搜索结果: ${currentSearchText}` : '全站内容搜索'"
       :description="currentSearchText ? `为您找到关于「${currentSearchText}」的共 ${allResults.length} 条相关结果` : '输入关键词快速查找核医学场所建设方案、施工案例与行业新闻'"
-      bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
       :breadcrumbs="[
         { label: '搜索结果' }
       ]"
@@ -181,45 +186,16 @@ useSeoMeta({
 
             <div class="flex items-center gap-2 mt-3 text-xs text-gray-500">
               <span>热门推荐：</span>
-              <button
-                type="button"
-                class="hover:text-[#206be7] hover:underline cursor-pointer"
-                @click="query = '核医学科'; handleSearch()"
-              >
-                核医学科
-              </button>
-              <span>·</span>
-              <button
-                type="button"
-                class="hover:text-[#206be7] hover:underline cursor-pointer"
-                @click="query = '辐射防护'; handleSearch()"
-              >
-                辐射防护
-              </button>
-              <span>·</span>
-              <button
-                type="button"
-                class="hover:text-[#206be7] hover:underline cursor-pointer"
-                @click="query = '衰变池'; handleSearch()"
-              >
-                衰变池
-              </button>
-              <span>·</span>
-              <button
-                type="button"
-                class="hover:text-[#206be7] hover:underline cursor-pointer"
-                @click="query = '数字孪生'; handleSearch()"
-              >
-                数字孪生
-              </button>
-              <span>·</span>
-              <button
-                type="button"
-                class="hover:text-[#206be7] hover:underline cursor-pointer"
-                @click="query = 'GMP'; handleSearch()"
-              >
-                GMP验收
-              </button>
+              <template v-for="(kw, idx) in hotSearchKeywords" :key="kw">
+                <span v-if="idx > 0">·</span>
+                <button
+                  type="button"
+                  class="hover:text-[#206be7] hover:underline cursor-pointer"
+                  @click="setKeywordAndSearch(kw)"
+                >
+                  {{ kw }}
+                </button>
+              </template>
             </div>
           </div>
 
