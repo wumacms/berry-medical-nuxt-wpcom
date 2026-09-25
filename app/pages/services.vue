@@ -19,8 +19,11 @@ useSeoMeta({
     <PageBanner
       :title="servicesPageData.bannerBlock.title"
       :description="servicesPageData.bannerBlock.description"
-      :breadcrumbs="[{ label: servicesPageData.bannerBlock.title }]"
     />
+
+    <!-- 2. 面包屑导航区块 (Breadcrumb Block) -->
+    <BreadcrumbBlock :items="[{ label: servicesPageData.bannerBlock.title }]" />
+
 
     <!-- 2. 服务总览三大篇章导航区块 (Overview Block) -->
     <ServiceOverviewBlock

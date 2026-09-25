@@ -19,8 +19,11 @@ useSeoMeta({
     <PageBanner
       title="产品列表"
       description="专注于核医学场所选址设计、辐射防护施工、衰变池系统与综合合规验收标杆工程展示"
-      :breadcrumbs="[{ label: '产品列表' }]"
     />
+
+    <!-- 2. 面包屑导航区块 -->
+    <BreadcrumbBlock :items="[{ label: '产品列表' }]" />
+
 
     <!-- 2. 主体布局：产品网格区块 + 侧边栏挂件区块 -->
     <div class="max-w-[1200px] mx-auto px-5">

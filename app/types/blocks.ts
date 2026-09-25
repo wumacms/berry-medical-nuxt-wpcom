@@ -3,21 +3,28 @@
  * 网站的基本原子单位是区块，页面由区块组装而成
  */
 
-import type { CaseItem, NewsItem, NavItem, ServiceChapter } from "./index";
+import type { CaseItem, NewsItem, ServiceChapter } from "./index";
 
-/** 基础区块：顶部横幅区块 */
+/** 基础区块：面包屑导航项契约 */
+export interface BreadcrumbItem {
+  label: string;
+  to?: string;
+}
+
+/** 基础区块：顶部横幅区块数据契约（纯粹包含横幅自身视觉数据） */
 export interface BannerBlockData {
   title: string;
   description?: string;
   bgImage?: string;
-  breadcrumbs?: { label: string; to?: string }[];
-  meta?: {
-    category?: string;
-    categoryTo?: string;
-    date?: string;
-    author?: string;
-    views?: number;
-  };
+}
+
+/** 基础区块：文章/内容详情页头部区块契约 (Article / Detail Header) */
+export interface ArticleHeaderBlockData {
+  title: string;
+  date?: string;
+  author?: string;
+  views?: number | string;
+  bgImage?: string;
 }
 
 /** 基础区块：标准区块头部（主标题 + 副标题） */

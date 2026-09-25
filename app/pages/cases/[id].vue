@@ -49,24 +49,28 @@ useSeoMeta({
 
 <template>
   <div class="page-case-detail">
-    <!-- 1. 顶部横幅区块 -->
-    <PageBanner
+    <!-- 1. 案例/产品详情专属头部区块 -->
+    <ArticleHeaderBlock
       :title="currentCase.title"
       :bg-image="currentCase.imageUrl"
-      :breadcrumbs="[
+    />
+
+    <!-- 2. 面包屑导航区块 -->
+    <BreadcrumbBlock
+      :items="[
         { label: '产品列表', to: '/cases' },
         { label: currentCase.title }
       ]"
     />
 
     <div class="max-w-[1200px] mx-auto px-5">
-      <!-- 2. 产品顶部关键信息与相册预览区块 -->
+      <!-- 3. 产品顶部关键信息与相册预览区块 -->
       <CasePreviewBlock
         :case-item="currentCase"
         :gallery-images="galleryImages"
       />
 
-      <!-- 3. 主体内容：选项卡详情区块 + 相关推荐区块 + 侧边栏挂件区块 -->
+      <!-- 4. 主体内容：选项卡详情区块 + 相关推荐区块 + 侧边栏挂件区块 -->
       <div class="flex flex-col lg:flex-row gap-9 items-start mb-15">
         <main class="flex-1 min-w-0 w-full space-y-8">
           <CaseDetailTabsBlock

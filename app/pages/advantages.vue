@@ -19,8 +19,11 @@ useSeoMeta({
     <PageBanner
       :title="advantagesPageData.bannerBlock.title"
       :description="advantagesPageData.bannerBlock.description"
-      :breadcrumbs="[{ label: advantagesPageData.bannerBlock.title }]"
     />
+
+    <!-- 2. 面包屑导航区块 (Breadcrumbs Block) -->
+    <BreadcrumbBlock :items="[{ label: advantagesPageData.bannerBlock.title }]" />
+
 
     <!-- 2. 关键数据统计区块 (Stats Block) -->
     <AdvantageStatsBlock :stats="advantagesPageData.statsBlock" />

@@ -23,8 +23,11 @@ const menuItems = computed(() => parseToc(privacyData.content));
     <PageBanner
       :title="privacyData.banner.title"
       :description="privacyData.banner.description"
-      :breadcrumbs="[{ label: privacyData.banner.title }]"
     />
+
+    <!-- 2. 面包屑导航区块 -->
+    <BreadcrumbBlock :items="[{ label: privacyData.banner.title }]" />
+
 
     <div class="max-w-[1200px] mx-auto px-5 mb-16">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

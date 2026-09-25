@@ -19,8 +19,11 @@ useSeoMeta({
     <PageBanner
       :title="aboutPageData.bannerBlock.title"
       :description="aboutPageData.bannerBlock.description"
-      :breadcrumbs="[{ label: aboutPageData.bannerBlock.title }]"
     />
+
+    <!-- 2. 面包屑导航区块 -->
+    <BreadcrumbBlock :items="[{ label: aboutPageData.bannerBlock.title }]" />
+
 
     <div class="max-w-[1200px] mx-auto px-5">
       <div class="flex flex-col lg:flex-row gap-9 items-start mb-15">

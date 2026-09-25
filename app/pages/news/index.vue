@@ -52,11 +52,16 @@ useSeoMeta({
       :title="currentCategoryLabel === '全部动态' ? '新闻动态' : currentCategoryLabel"
       description="汇聚核医学科场所建设前沿行业动态、技术分享与企业重要发展纪实"
       bg-image="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1600&auto=format&fit=crop"
-      :breadcrumbs="[
+    />
+
+    <!-- 2. 面包屑导航区块 -->
+    <BreadcrumbBlock
+      :items="[
         { label: '新闻动态', to: activeCategory !== 'all' ? '/news' : undefined },
         ...(activeCategory !== 'all' ? [{ label: currentCategoryLabel }] : [])
       ]"
     />
+
 
     <!-- 2. 主体布局：新闻网格/列表区块 + 侧边栏挂件区块 -->
     <div class="max-w-[1200px] mx-auto px-5">

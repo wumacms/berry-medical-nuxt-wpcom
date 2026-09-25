@@ -46,25 +46,25 @@ useSeoMeta({
 
 <template>
   <div class="page-news-detail">
-    <!-- 1. 顶部横幅区块 -->
-    <PageBanner
+    <!-- 1. 文章详情专属头部区块 (Title + Byline Meta) -->
+    <ArticleHeaderBlock
       :title="currentArticle.title"
+      :date="currentArticle.date"
+      :author="currentArticle.author"
+      :views="currentArticle.readCount"
       :bg-image="currentArticle.imageUrl"
-      :breadcrumbs="[
+    />
+
+    <!-- 2. 面包屑导航区块 -->
+    <BreadcrumbBlock
+      :items="[
         { label: '新闻动态', to: '/news' },
         { label: currentArticle.categoryLabel, to: `/news?category=${currentArticle.category}` },
         { label: currentArticle.title }
       ]"
-      :meta="{
-        category: currentArticle.categoryLabel,
-        categoryTo: `/news?category=${currentArticle.category}`,
-        date: currentArticle.date,
-        author: currentArticle.author || '贝瑞医疗编辑部',
-        views: currentArticle.readCount || 1200
-      }"
     />
 
-    <!-- 2. 主体布局：新闻文章区块 + 侧边栏挂件区块 -->
+    <!-- 3. 主体布局：新闻文章区块 + 侧边栏挂件区块 -->
     <div class="max-w-[1200px] mx-auto px-5">
       <div class="flex flex-col lg:flex-row gap-9 items-start mb-15">
         <main class="flex-1 min-w-0 w-full">

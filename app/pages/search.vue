@@ -154,14 +154,15 @@ useSeoMeta({
 
 <template>
   <div>
-    <!-- Top Banner & Breadcrumbs -->
+    <!-- 1. 顶部横幅区块 -->
     <PageBanner
       :title="currentSearchText ? `搜索结果: ${currentSearchText}` : '全站内容搜索'"
       :description="currentSearchText ? `为您找到关于「${currentSearchText}」的共 ${allResults.length} 条相关结果` : '输入关键词快速查找核医学场所建设方案、施工案例与行业新闻'"
-      :breadcrumbs="[
-        { label: '搜索结果' }
-      ]"
     />
+
+    <!-- 2. 面包屑导航区块 -->
+    <BreadcrumbBlock :items="[{ label: '搜索结果' }]" />
+
 
     <div class="max-w-[1200px] mx-auto px-5">
       <div class="flex flex-col lg:flex-row gap-9 items-start mb-15">

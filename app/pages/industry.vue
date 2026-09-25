@@ -19,8 +19,11 @@ useSeoMeta({
     <PageBanner
       :title="industryPageData.bannerBlock.title"
       :description="industryPageData.bannerBlock.description"
-      :breadcrumbs="[{ label: industryPageData.bannerBlock.title }]"
     />
+
+    <!-- 2. 面包屑导航区块 (Breadcrumb Block) -->
+    <BreadcrumbBlock :items="[{ label: industryPageData.bannerBlock.title }]" />
+
 
     <div class="max-w-[1200px] mx-auto px-5">
       <!-- 2. 全球健康挑战与核医学价值区块 (Challenges Block) -->

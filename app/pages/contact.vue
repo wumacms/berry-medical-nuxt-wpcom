@@ -17,8 +17,11 @@ useSeoMeta({
     <PageBanner
       :title="contactPageData.bannerBlock.title"
       :description="contactPageData.bannerBlock.description"
-      :breadcrumbs="[{ label: contactPageData.bannerBlock.title }]"
     />
+
+    <!-- 2. 面包屑导航区块 (Breadcrumb Block) -->
+    <BreadcrumbBlock :items="[{ label: contactPageData.bannerBlock.title }]" />
+
 
     <div class="max-w-[1200px] mx-auto px-5 mb-16">
       <!-- 2. 微信二维码卡片与手风琴信息列表区块 (Info Block) -->
