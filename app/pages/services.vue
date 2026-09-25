@@ -30,7 +30,7 @@ const layoutPrinciples = [
 
     <!-- 服务总览三大篇章导航 -->
     <section class="py-12 bg-white border-b border-gray-100">
-      <div class="wpcom-container">
+      <div class="max-w-[1200px] mx-auto px-5">
         <SectionHeader title="三大专业篇章" subtitle="设计、施工、设备三大篇章，构建核医学场所建设完整交付矩阵" />
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -61,7 +61,7 @@ const layoutPrinciples = [
 
     <!-- 篇章一：设计篇 -->
     <section id="design" class="py-16 bg-gray-50/70 border-b border-gray-200/80 scroll-mt-20">
-      <div class="wpcom-container">
+      <div class="max-w-[1200px] mx-auto px-5">
         <div class="flex items-center gap-4 mb-10 pb-4 border-b border-gray-200">
           <div class="w-12 h-12 rounded-sm bg-[#206be7] text-white flex items-center justify-center text-xl shadow-md">
             <i class="fa-solid fa-drafting-compass"></i>
@@ -105,7 +105,7 @@ const layoutPrinciples = [
 
     <!-- 篇章二：施工篇 -->
     <section id="construction" class="py-16 bg-white border-b border-gray-200/80 scroll-mt-20">
-      <div class="wpcom-container">
+      <div class="max-w-[1200px] mx-auto px-5">
         <div class="flex items-center gap-4 mb-10 pb-4 border-b border-gray-200">
           <div class="w-12 h-12 rounded-sm bg-[#206be7] text-white flex items-center justify-center text-xl shadow-md">
             <i class="fa-solid fa-helmet-safety"></i>
@@ -131,7 +131,7 @@ const layoutPrinciples = [
 
     <!-- 篇章三：设备篇与运维 -->
     <section id="equipment" class="py-16 bg-gray-50/70 scroll-mt-20">
-      <div class="wpcom-container">
+      <div class="max-w-[1200px] mx-auto px-5">
         <div class="flex items-center gap-4 mb-10 pb-4 border-b border-gray-200">
           <div class="w-12 h-12 rounded-sm bg-[#206be7] text-white flex items-center justify-center text-xl shadow-md">
             <i class="fa-solid fa-microchip"></i>
@@ -152,8 +152,9 @@ const layoutPrinciples = [
         </div>
 
         <div class="text-center pt-6">
-          <NuxtLink to="/contact" class="wpcom-btn btn-primary btn-lg">
-            立即预约项目工勘与需求沟通 <i class="fa-solid fa-arrow-right"></i>
+          <NuxtLink to="/contact" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-[15px] font-medium px-8 py-3.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group">
+            <span>立即预约项目工勘与需求沟通</span>
+            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.75 transition-transform duration-200"></i>
           </NuxtLink>
         </div>
       </div>

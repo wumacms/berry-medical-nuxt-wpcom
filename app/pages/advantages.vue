@@ -24,9 +24,9 @@ useSeoMeta({
       bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
       :breadcrumbs="[{ label: '专业优势' }]" />
 
-    <!-- 关键数据卡片 (WPCOM Module 7 Stats Row) -->
+    <!-- 关键数据卡片 (Stats Row) -->
     <section class="py-12 bg-white border-b border-gray-100">
-      <div class="wpcom-container">
+      <div class="max-w-[1200px] mx-auto px-5">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
           <div v-for="stat in advantageStats" :key="stat.label"
             class="bg-gray-50/80 border border-gray-200 rounded-sm p-6 text-center hover:border-[#206be7] hover:shadow-md transition">
@@ -46,7 +46,7 @@ useSeoMeta({
 
     <!-- 六大专业能力 -->
     <section id="features" class="py-16 bg-gray-50/70 border-b border-gray-200/80">
-      <div class="wpcom-container">
+      <div class="max-w-[1200px] mx-auto px-5">
         <SectionHeader title="六大核心优势" subtitle="以高标准防护、合规取证与技术自研驱动服务全方位领先" />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -68,7 +68,7 @@ useSeoMeta({
 
     <!-- 数字孪生赋能区块 -->
     <section id="digital" class="py-16 bg-white">
-      <div class="wpcom-container">
+      <div class="max-w-[1200px] mx-auto px-5">
         <SectionHeader title="瑞核V1.0数字孪生系统" subtitle="自主研发面向核医学科场所的下一代智慧物联态势感知运维系统" />
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-12">
@@ -84,8 +84,9 @@ useSeoMeta({
               平台实时采集场所各测点的剂量率、通风柜面风速、室内外负压差、衰变池液位等核心安全参数，一旦发现异常立即触发声光及短信多级报警，全天候守护医护与公众安全。
             </p>
             <div class="pt-2">
-              <NuxtLink to="/contact" class="wpcom-btn btn-primary">
-                预约数字孪生系统演示 <i class="fa-solid fa-arrow-right"></i>
+              <NuxtLink to="/contact" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-sm font-medium px-6 py-2.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group">
+                <span>预约数字孪生系统演示</span>
+                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.75 transition-transform duration-200"></i>
               </NuxtLink>
             </div>
           </div>

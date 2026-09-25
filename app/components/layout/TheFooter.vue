@@ -7,8 +7,8 @@ const wechatPopup = ref(false);
 
 <template>
   <footer class="footer bg-[#1a1e27] text-gray-400 pt-16 pb-12 border-t border-gray-800 text-sm">
-    <div class="wpcom-container">
-      <!-- 4列 Widget 布局 (WPCOM Module 7 Footer Widgets) -->
+    <div class="max-w-[1200px] mx-auto px-5">
+      <!-- 4列 Widget 布局 -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-gray-800/80">
         <!-- 分类 Widget (col-span-2) -->
         <div class="lg:col-span-2">

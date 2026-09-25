@@ -1,10 +1,10 @@
 <template>
   <section class="py-16 md:py-20 bg-gray-50/70 border-t border-b border-gray-200/60">
-    <div class="wpcom-container">
+    <div class="max-w-[1200px] mx-auto px-5">
       <SectionHeader title="关于我们" subtitle="专业的核医学场所建设全生命周期服务团队" />
 
       <div
-        class="mc-item-wrap bg-white border border-gray-200 rounded-sm p-6 sm:p-10 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        class="bg-white border border-gray-200 rounded-sm p-6 sm:p-10 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         <!-- 左侧图片 -->
         <div class="lg:col-span-6 overflow-hidden rounded-sm aspect-4/3 bg-gray-100 border border-gray-100">
           <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop"
@@ -40,9 +40,9 @@
           </div>
 
           <div class="pt-2">
-            <NuxtLink to="/about" class="wpcom-btn btn-primary btn-lg inline-flex items-center gap-2">
+            <NuxtLink to="/about" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-[15px] font-medium px-8 py-3.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group">
               <span>深入了解贝瑞医疗</span>
-              <i class="fa-solid fa-arrow-right text-xs"></i>
+              <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.75 transition-transform duration-200"></i>
             </NuxtLink>
           </div>
         </div>

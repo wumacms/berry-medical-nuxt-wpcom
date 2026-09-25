@@ -59,7 +59,7 @@ const drivers = [
       bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
       :breadcrumbs="[{ label: '行业背景' }]" />
 
-    <div class="wpcom-container">
+    <div class="max-w-[1200px] mx-auto px-5">
       <!-- 全球健康挑战与核医学价值 -->
       <section class="py-12 bg-white">
         <SectionHeader title="全球健康挑战与核医学价值" subtitle="核医学在疾病早期诊断、精准分期、疗效评估及靶向治疗全流程中展现核心价值" />

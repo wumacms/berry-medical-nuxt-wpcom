@@ -16,7 +16,7 @@ const nextProduct = () => {
 
 <template>
   <section class="py-16 md:py-20 bg-white">
-    <div class="wpcom-container">
+    <div class="max-w-[1200px] mx-auto px-5">
       <SectionHeader title="产品展示" subtitle="我们的代表性产品与服务案例" />
 
       <!-- 4列轮播区域 -->
@@ -72,8 +72,9 @@ const nextProduct = () => {
       </div>
 
       <div class="text-center mt-10">
-        <NuxtLink to="/cases" class="wpcom-btn btn-dark">
-          查看更多产品案例 <i class="fa-solid fa-arrow-right"></i>
+        <NuxtLink to="/cases" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-medium text-white bg-[#262626] hover:bg-[#206be7] border border-[#262626] hover:border-[#206be7] rounded-sm transition-all duration-200 cursor-pointer whitespace-nowrap hover:shadow-[0_4px_12px_rgba(32,107,231,0.24)] group">
+          <span>查看更多产品案例</span>
+          <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.75 transition-transform duration-200"></i>
         </NuxtLink>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <section class="py-16 md:py-20 bg-white">
-    <div class="wpcom-container">
+    <div class="max-w-[1200px] mx-auto px-5">
       <SectionHeader title="服务项目" subtitle="我们提供的核医学场所建设全流程服务" />
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

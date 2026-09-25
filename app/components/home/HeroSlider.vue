@@ -69,7 +69,7 @@ onUnmounted(() => {
 
       <!-- 轮播内容 -->
       <div class="absolute inset-0 flex items-center">
-        <div class="wpcom-container w-full">
+        <div class="max-w-[1200px] mx-auto px-5 w-full">
           <div class="max-w-2xl text-left space-y-4 animate-fade-in">
             <span
               class="inline-block px-3 py-1 bg-[#206be7]/30 border border-[#206be7]/60 text-white text-xs font-semibold rounded-xs">
@@ -82,9 +82,9 @@ onUnmounted(() => {
               {{ slide.subdesc }}
             </p>
             <div class="pt-3">
-              <NuxtLink :to="slide.btnLink" class="wpcom-btn btn-primary btn-lg inline-flex items-center gap-2">
+              <NuxtLink :to="slide.btnLink" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-[15px] font-medium px-8 py-3.5 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer group">
                 <span>{{ slide.btnText }}</span>
-                <i class="fa-solid fa-arrow-right text-xs"></i>
+                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.75 transition-transform duration-200"></i>
               </NuxtLink>
             </div>
           </div>

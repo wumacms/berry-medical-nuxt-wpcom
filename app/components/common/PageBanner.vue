@@ -20,7 +20,7 @@ interface Props {
   meta?: BannerMeta;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   description: "",
   bgImage: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop",
   breadcrumbs: () => [],
@@ -29,20 +29,24 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <div>
-    <!-- WPCOM Module 7 Style Banner (.banner.banner-style-1) -->
-    <div class="banner banner-style-1 relative h-60 bg-[#162132] overflow-hidden flex items-center">
-      <img :src="bgImage" :alt="title"
-        class="banner-img absolute inset-0 w-full h-full object-cover opacity-25 scale-105" loading="eager" />
-      <div class="absolute inset-0 bg-gradient-to-r from-[#111927]/90 via-[#111927]/60 to-[#111927]/90"></div>
+    <!-- Banner Area -->
+    <div class="relative h-60 bg-[#162132] overflow-hidden flex items-center">
+      <img
+        :src="bgImage"
+        :alt="title"
+        class="absolute inset-0 w-full h-full object-cover opacity-25 scale-105"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#111927]/90 via-[#111927]/60 to-[#111927]/90" />
 
-      <div class="banner-content relative z-10 w-full">
-        <div class="wpcom-container">
-          <h1 class="banner-title text-2xl sm:text-3xl md:text-4xl font-semibold text-white tracking-tight">
+      <div class="relative z-10 w-full">
+        <div class="max-w-[1200px] mx-auto px-5">
+          <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white tracking-tight m-0 leading-tight">
             {{ title }}
           </h1>
 
           <!-- Meta (for article detail) -->
-          <div v-if="meta" class="banner-desc mt-3 flex flex-wrap items-center gap-4 text-xs sm:text-sm text-white/80">
+          <div v-if="meta" class="mt-3 flex flex-wrap items-center gap-4 text-xs sm:text-sm text-white/80">
             <span v-if="meta.category" class="inline-flex items-center gap-1.5">
               <i class="fa-regular fa-folder-open text-[#206be7]"></i>
               <NuxtLink v-if="meta.categoryTo" :to="meta.categoryTo" class="hover:underline text-white">
@@ -67,30 +71,35 @@ const props = withDefaults(defineProps<Props>(), {
             </span>
           </div>
 
-          <p v-else-if="description"
-            class="banner-desc mt-2 text-sm text-white/75 max-w-2xl font-normal leading-relaxed">
+          <p
+            v-else-if="description"
+            class="mt-2 text-sm text-white/75 max-w-2xl font-normal leading-relaxed m-0"
+          >
             {{ description }}
           </p>
         </div>
       </div>
     </div>
 
-    <!-- WPCOM Module 7 Style Breadcrumbs (.breadcrumb-wrap) -->
-    <div class="breadcrumb-wrap bg-white border-b border-gray-200 py-3.5 mb-8">
-      <div class="wpcom-container">
-        <ol class="breadcrumb flex items-center flex-wrap gap-2 text-xs sm:text-sm text-gray-500 m-0 p-0 list-none">
-          <li class="home flex items-center gap-1.5">
+    <!-- Breadcrumbs Navigation -->
+    <div class="bg-white border-b border-gray-200 py-3.5 mb-8">
+      <div class="max-w-[1200px] mx-auto px-5">
+        <ol class="flex items-center flex-wrap gap-2 text-xs sm:text-sm text-gray-500 m-0 p-0 list-none">
+          <li class="flex items-center gap-1.5">
             <i class="fa-solid fa-house text-xs text-gray-400"></i>
             <NuxtLink to="/" class="text-gray-500 hover:text-[#206be7] transition">首页</NuxtLink>
           </li>
 
           <template v-for="(item, idx) in breadcrumbs" :key="idx">
-            <li class="separator text-gray-300 text-[10px]">
+            <li class="text-gray-300 text-[10px]" aria-hidden="true">
               <i class="fa-solid fa-chevron-right"></i>
             </li>
-            <li :class="{ 'active text-gray-900 font-medium': !item.to || idx === breadcrumbs.length - 1 }">
-              <NuxtLink v-if="item.to && idx !== breadcrumbs.length - 1" :to="item.to"
-                class="text-gray-500 hover:text-[#206be7] transition">
+            <li :class="{ 'text-gray-900 font-medium': !item.to || idx === breadcrumbs.length - 1 }">
+              <NuxtLink
+                v-if="item.to && idx !== breadcrumbs.length - 1"
+                :to="item.to"
+                class="text-gray-500 hover:text-[#206be7] transition"
+              >
                 {{ item.label }}
               </NuxtLink>
               <span v-else>{{ item.label }}</span>

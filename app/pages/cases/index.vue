@@ -37,8 +37,8 @@ const selectCategory = (catKey: string) => {
 </script>
 
 <template>
-  <div class="page-category-product">
-    <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
+  <div>
+    <!-- Top Banner & Breadcrumbs -->
     <PageBanner
       title="产品列表"
       description="专注于核医学场所选址设计、辐射防护施工、衰变池系统与综合合规验收标杆工程展示"
@@ -46,11 +46,11 @@ const selectCategory = (catKey: string) => {
       :breadcrumbs="[{ label: '产品列表' }]"
     />
 
-    <!-- Main Content Layout (75% Main + 25% Sidebar) -->
-    <div class="wpcom-container">
-      <div class="wpcom-layout-wrap">
+    <!-- Main Content Layout -->
+    <div class="max-w-[1200px] mx-auto px-5">
+      <div class="flex flex-col lg:flex-row gap-9 items-start mb-15">
         <!-- 左侧主体内容 -->
-        <main class="wpcom-main">
+        <main class="flex-1 min-w-0 w-full">
           <!-- 分类筛选器 Tabs -->
           <div class="flex items-center gap-2 mb-8 flex-wrap pb-4 border-b border-gray-100">
             <button
@@ -68,19 +68,28 @@ const selectCategory = (catKey: string) => {
             </button>
           </div>
 
-          <!-- 产品列表网格 (WPCOM .post-loop.post-loop-product.cols-3) -->
-          <ul class="post-loop post-loop-product cols-3">
-            <li v-for="item in paginatedCases" :key="item.id" class="post-item">
-              <div class="p-item-wrap">
-                <NuxtLink :to="`/cases/${item.id}`" class="thumb" :title="item.title">
+          <!-- 产品列表网格 -->
+          <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 list-none p-0 m-0 mb-10">
+            <li
+              v-for="item in paginatedCases"
+              :key="item.id"
+              class="bg-white border border-gray-200 rounded-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-gray-300 group"
+            >
+              <div>
+                <NuxtLink :to="`/cases/${item.id}`" class="block aspect-3/2 overflow-hidden bg-slate-100" :title="item.title">
                   <img
                     :src="item.imageUrl"
                     :alt="item.title"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </NuxtLink>
-                <h3 class="title">
-                  <NuxtLink :to="`/cases/${item.id}`" :title="item.title">
+                <h3 class="p-4 m-0 text-sm md:text-[15px] font-medium leading-snug text-center">
+                  <NuxtLink
+                    :to="`/cases/${item.id}`"
+                    :title="item.title"
+                    class="text-gray-900 group-hover:text-[#206be7] transition-colors duration-200"
+                  >
                     {{ item.title }}
                   </NuxtLink>
                 </h3>
@@ -94,29 +103,28 @@ const selectCategory = (catKey: string) => {
             该分类下暂无产品或案例
           </div>
 
-          <!-- 分页栏 (WPCOM Pagination) -->
-          <ul v-if="totalPages > 1" class="pagination">
-            <li class="disabled">
+          <!-- 分页栏 -->
+          <ul v-if="totalPages > 1" class="flex items-center justify-center gap-1.5 my-8 list-none p-0">
+            <li class="inline-flex items-center justify-center min-w-9 h-9 px-3 border border-gray-200 text-xs rounded-xs text-gray-400 bg-gray-50">
               <span>{{ currentPage }} / {{ totalPages }}</span>
             </li>
             <li
               v-for="p in totalPages"
               :key="p"
-              :class="{ active: currentPage === p }"
             >
               <button
                 type="button"
-                class="min-w-9 h-9 px-3 border border-gray-200 text-xs rounded-xs hover:border-[#206be7] hover:text-[#206be7] cursor-pointer"
-                :class="{ 'bg-[#206be7] text-white !border-[#206be7] font-semibold': currentPage === p }"
+                class="min-w-9 h-9 px-3 border border-gray-200 text-xs rounded-xs hover:border-[#206be7] hover:text-[#206be7] cursor-pointer transition-colors"
+                :class="currentPage === p ? 'bg-[#206be7] text-white !border-[#206be7] font-semibold' : 'bg-white text-gray-700'"
                 @click="currentPage = p"
               >
                 {{ p }}
               </button>
             </li>
-            <li v-if="currentPage < totalPages" class="next">
+            <li v-if="currentPage < totalPages">
               <button
                 type="button"
-                class="h-9 px-3 border border-gray-200 text-xs rounded-xs hover:border-[#206be7] hover:text-[#206be7] cursor-pointer"
+                class="h-9 px-3 border border-gray-200 text-xs rounded-xs hover:border-[#206be7] hover:text-[#206be7] cursor-pointer transition-colors bg-white text-gray-700"
                 @click="currentPage++"
               >
                 下一页 &gt;
@@ -126,7 +134,7 @@ const selectCategory = (catKey: string) => {
         </main>
 
         <!-- 右侧边栏 -->
-        <div class="wpcom-sidebar">
+        <div class="w-full lg:w-[300px] shrink-0">
           <SidebarWidget active-path="/cases" />
         </div>
       </div>

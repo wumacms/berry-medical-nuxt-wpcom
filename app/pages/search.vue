@@ -38,53 +38,75 @@ interface SearchResultItem {
   url: string;
 }
 
-// Search across both cases and news
+// Search Logic across both cases and news
 const allResults = computed<SearchResultItem[]>(() => {
-  const kw = currentSearchText.value.trim().toLowerCase();
-  if (!kw) return [];
+  const q = currentSearchText.value.trim().toLowerCase();
+  if (!q) {
+    // If no keyword, return mixed latest items
+    const casesPart: SearchResultItem[] = caseList.slice(0, 4).map((c) => ({
+      id: `case-${c.id}`,
+      type: "case",
+      title: c.title,
+      categoryLabel: c.categoryLabel,
+      summary: c.summary,
+      imageUrl: c.imageUrl,
+      url: `/cases/${c.id}`,
+    }));
+    const newsPart: SearchResultItem[] = newsList.slice(0, 4).map((n) => ({
+      id: `news-${n.id}`,
+      type: "news",
+      title: n.title,
+      categoryLabel: n.categoryLabel,
+      summary: n.summary,
+      imageUrl: n.imageUrl,
+      date: n.date,
+      url: `/news/${n.id}`,
+    }));
+    return [...casesPart, ...newsPart];
+  }
 
   const results: SearchResultItem[] = [];
 
   // Match Cases
-  for (const c of caseList) {
-    const matchTitle = c.title.toLowerCase().includes(kw);
-    const matchSummary = c.summary.toLowerCase().includes(kw);
-    const matchTags = c.tags.some((t) => t.toLowerCase().includes(kw));
-    const matchCategory = c.categoryLabel.toLowerCase().includes(kw);
+  caseList.forEach((c) => {
+    const matchTitle = c.title.toLowerCase().includes(q);
+    const matchSummary = c.summary.toLowerCase().includes(q);
+    const matchCategory = c.categoryLabel.toLowerCase().includes(q);
+    const matchTags = c.tags.some((t) => t.toLowerCase().includes(q));
 
-    if (matchTitle || matchSummary || matchTags || matchCategory) {
+    if (matchTitle || matchSummary || matchCategory || matchTags) {
       results.push({
         id: `case-${c.id}`,
         type: "case",
         title: c.title,
-        categoryLabel: `产品案例 · ${c.categoryLabel}`,
+        categoryLabel: c.categoryLabel,
         summary: c.summary,
         imageUrl: c.imageUrl,
         url: `/cases/${c.id}`,
       });
     }
-  }
+  });
 
   // Match News
-  for (const n of newsList) {
-    const matchTitle = n.title.toLowerCase().includes(kw);
-    const matchSummary = n.summary.toLowerCase().includes(kw);
-    const matchCategory = n.categoryLabel.toLowerCase().includes(kw);
-    const matchContent = (n.content || "").toLowerCase().includes(kw);
+  newsList.forEach((n) => {
+    const matchTitle = n.title.toLowerCase().includes(q);
+    const matchSummary = n.summary.toLowerCase().includes(q);
+    const matchCategory = n.categoryLabel.toLowerCase().includes(q);
+    const matchTags = n.tags?.some((t) => t.toLowerCase().includes(q));
 
-    if (matchTitle || matchSummary || matchCategory || matchContent) {
+    if (matchTitle || matchSummary || matchCategory || matchTags) {
       results.push({
         id: `news-${n.id}`,
         type: "news",
         title: n.title,
-        categoryLabel: `新闻资讯 · ${n.categoryLabel}`,
+        categoryLabel: n.categoryLabel,
         summary: n.summary,
         imageUrl: n.imageUrl,
         date: n.date,
         url: `/news/${n.id}`,
       });
     }
-  }
+  });
 
   return results;
 });
@@ -125,24 +147,33 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="page-search-results">
-    <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
-    <PageBanner :title="currentSearchText ? `搜索结果: ${currentSearchText}` : '全站内容搜索'"
+  <div>
+    <!-- Top Banner & Breadcrumbs -->
+    <PageBanner
+      :title="currentSearchText ? `搜索结果: ${currentSearchText}` : '全站内容搜索'"
       :description="currentSearchText ? `为您找到关于「${currentSearchText}」的共 ${allResults.length} 条相关结果` : '输入关键词快速查找核医学场所建设方案、施工案例与行业新闻'"
       bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
       :breadcrumbs="[
         { label: '搜索结果' }
-      ]" />
+      ]"
+    />
 
-    <div class="wpcom-container">
-      <div class="wpcom-layout-wrap">
-        <main class="wpcom-main">
+    <div class="max-w-[1200px] mx-auto px-5">
+      <div class="flex flex-col lg:flex-row gap-9 items-start mb-15">
+        <main class="flex-1 min-w-0 w-full">
           <!-- 搜索输入框工具栏 -->
           <div class="bg-gray-50/70 border border-gray-200 rounded-sm p-4 sm:p-5 mb-8">
-            <form @submit.prevent="handleSearch" class="flex items-center gap-2">
-              <input v-model="query" type="text" placeholder="重新输入搜索关键词..."
-                class="flex-1 text-xs sm:text-sm bg-white border border-gray-300 rounded-sm px-4 py-2.5 outline-none focus:border-[#206be7] transition" />
-              <button type="submit" class="wpcom-btn btn-primary py-2.5 px-5 text-xs sm:text-sm font-medium">
+            <form class="flex items-center gap-2" @submit.prevent="handleSearch">
+              <input
+                v-model="query"
+                type="text"
+                placeholder="重新输入搜索关键词..."
+                class="flex-1 text-xs sm:text-sm bg-white border border-gray-300 rounded-sm px-4 py-2.5 outline-none focus:border-[#206be7] transition"
+              />
+              <button
+                type="submit"
+                class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white py-2.5 px-5 text-xs sm:text-sm font-medium shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
+              >
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <span>搜索</span>
               </button>
@@ -150,58 +181,81 @@ useSeoMeta({
 
             <div class="flex items-center gap-2 mt-3 text-xs text-gray-500">
               <span>热门推荐：</span>
-              <button type="button" class="hover:text-[#206be7] hover:underline"
-                @click="query = '核医学科'; handleSearch()">
+              <button
+                type="button"
+                class="hover:text-[#206be7] hover:underline cursor-pointer"
+                @click="query = '核医学科'; handleSearch()"
+              >
                 核医学科
               </button>
               <span>·</span>
-              <button type="button" class="hover:text-[#206be7] hover:underline"
-                @click="query = '辐射防护'; handleSearch()">
+              <button
+                type="button"
+                class="hover:text-[#206be7] hover:underline cursor-pointer"
+                @click="query = '辐射防护'; handleSearch()"
+              >
                 辐射防护
               </button>
               <span>·</span>
-              <button type="button" class="hover:text-[#206be7] hover:underline" @click="query = '衰变池'; handleSearch()">
+              <button
+                type="button"
+                class="hover:text-[#206be7] hover:underline cursor-pointer"
+                @click="query = '衰变池'; handleSearch()"
+              >
                 衰变池
               </button>
               <span>·</span>
-              <button type="button" class="hover:text-[#206be7] hover:underline"
-                @click="query = '数字孪生'; handleSearch()">
+              <button
+                type="button"
+                class="hover:text-[#206be7] hover:underline cursor-pointer"
+                @click="query = '数字孪生'; handleSearch()"
+              >
                 数字孪生
               </button>
               <span>·</span>
-              <button type="button" class="hover:text-[#206be7] hover:underline" @click="query = 'GMP'; handleSearch()">
+              <button
+                type="button"
+                class="hover:text-[#206be7] hover:underline cursor-pointer"
+                @click="query = 'GMP'; handleSearch()"
+              >
                 GMP验收
               </button>
             </div>
           </div>
 
-          <!-- 搜索结果列表 (WPCOM .post-loop.post-loop-default) -->
+          <!-- 搜索结果列表 -->
           <div v-if="paginatedResults.length > 0">
-            <ul class="post-loop post-loop-default">
-              <li v-for="item in paginatedResults" :key="item.id" class="post-item">
-                <div class="item-img">
+            <ul class="space-y-0 divide-y divide-gray-200 list-none p-0 m-0 mb-10">
+              <li
+                v-for="item in paginatedResults"
+                :key="item.id"
+                class="flex flex-col sm:flex-row gap-6 py-6 first:pt-0 group"
+              >
+                <div class="w-full sm:w-60 aspect-3/2 overflow-hidden rounded-sm bg-slate-100 shrink-0">
                   <NuxtLink :to="item.url" :title="item.title">
-                    <img :src="item.imageUrl" :alt="item.title" loading="lazy" />
+                    <img :src="item.imageUrl" :alt="item.title" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   </NuxtLink>
                 </div>
-                <div class="item-content">
+                <div class="flex-1 min-w-0 flex flex-col justify-between">
                   <div>
-                    <h2 class="item-title">
-                      <NuxtLink :to="item.url" :title="item.title" v-html="highlightKeyword(item.title)"></NuxtLink>
+                    <h2 class="text-base md:text-lg font-semibold leading-snug m-0 mb-2.5">
+                      <NuxtLink :to="item.url" :title="item.title" class="text-gray-900 group-hover:text-[#206be7] transition-colors" v-html="highlightKeyword(item.title)"></NuxtLink>
                     </h2>
-                    <div class="item-excerpt">
-                      <p v-html="highlightKeyword(item.summary)"></p>
+                    <div class="text-xs md:text-sm text-gray-500 leading-relaxed mb-3 line-clamp-2">
+                      <p class="m-0" v-html="highlightKeyword(item.summary)"></p>
                     </div>
                   </div>
-                  <div class="item-meta">
-                    <span class="text-[#206be7] font-medium bg-blue-50 px-2 py-0.5 rounded-xs">
+                  <div class="flex items-center gap-3 text-xs text-gray-400">
+                    <span class="text-[#206be7] font-medium bg-blue-50/80 px-2 py-0.5 rounded-xs">
                       {{ item.categoryLabel }}
                     </span>
-                    <span v-if="item.date" class="text-gray-400">
+                    <span v-if="item.date">
                       {{ item.date }}
                     </span>
-                    <NuxtLink :to="item.url"
-                      class="ml-auto text-xs text-[#206be7] hover:underline flex items-center gap-1">
+                    <NuxtLink
+                      :to="item.url"
+                      class="ml-auto text-xs text-[#206be7] hover:underline flex items-center gap-1"
+                    >
                       <span>查看详情</span>
                       <i class="fa-solid fa-angle-right text-[10px]"></i>
                     </NuxtLink>
@@ -210,23 +264,27 @@ useSeoMeta({
               </li>
             </ul>
 
-            <!-- 分页器 (WPCOM Pagination) -->
-            <ul v-if="totalPages > 1" class="pagination">
-              <li class="disabled">
+            <!-- 分页器 -->
+            <ul v-if="totalPages > 1" class="flex items-center justify-center gap-1.5 my-8 list-none p-0">
+              <li class="inline-flex items-center justify-center min-w-9 h-9 px-3 border border-gray-200 text-xs rounded-xs text-gray-400 bg-gray-50">
                 <span>{{ currentPage }} / {{ totalPages }}</span>
               </li>
-              <li v-for="p in totalPages" :key="p" :class="{ active: currentPage === p }">
-                <button type="button"
-                  class="min-w-9 h-9 px-3 border border-gray-200 text-xs rounded-xs hover:border-[#206be7] hover:text-[#206be7] cursor-pointer"
-                  :class="{ 'bg-[#206be7] text-white border-[#206be7]! font-semibold': currentPage === p }"
-                  @click="currentPage = p">
+              <li v-for="p in totalPages" :key="p">
+                <button
+                  type="button"
+                  class="min-w-9 h-9 px-3 border border-gray-200 text-xs rounded-xs hover:border-[#206be7] hover:text-[#206be7] cursor-pointer transition-colors"
+                  :class="currentPage === p ? 'bg-[#206be7] text-white !border-[#206be7] font-semibold' : 'bg-white text-gray-700'"
+                  @click="currentPage = p"
+                >
                   {{ p }}
                 </button>
               </li>
-              <li v-if="currentPage < totalPages" class="next">
-                <button type="button"
-                  class="h-9 px-3 border border-gray-200 text-xs rounded-xs hover:border-[#206be7] hover:text-[#206be7] cursor-pointer"
-                  @click="currentPage++">
+              <li v-if="currentPage < totalPages">
+                <button
+                  type="button"
+                  class="h-9 px-3 border border-gray-200 text-xs rounded-xs hover:border-[#206be7] hover:text-[#206be7] cursor-pointer transition-colors bg-white text-gray-700"
+                  @click="currentPage++"
+                >
                   下一页 &gt;
                 </button>
               </li>
@@ -236,7 +294,8 @@ useSeoMeta({
           <!-- 空搜索结果 -->
           <div v-else class="py-20 text-center bg-white border border-gray-200 rounded-sm p-8">
             <div
-              class="w-16 h-16 rounded-full bg-blue-50 text-[#206be7] mx-auto flex items-center justify-center text-2xl mb-4">
+              class="w-16 h-16 rounded-full bg-blue-50 text-[#206be7] mx-auto flex items-center justify-center text-2xl mb-4"
+            >
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <h3 class="text-base font-semibold text-gray-900 mb-2">未找到匹配的结果</h3>
@@ -244,10 +303,16 @@ useSeoMeta({
               很抱歉，没有找到与「{{ currentSearchText }}」相关的内容。建议尝试缩短搜索词或更换其他关键词，也可以直接联系我们获取支持。
             </p>
             <div class="mt-6 flex justify-center gap-4">
-              <NuxtLink to="/cases" class="wpcom-btn btn-outline text-xs">
+              <NuxtLink
+                to="/cases"
+                class="inline-flex items-center justify-center gap-2 rounded-sm border border-gray-300 text-gray-700 hover:border-[#206be7] hover:text-[#206be7] px-4 py-2 text-xs font-medium transition-all cursor-pointer"
+              >
                 浏览全部产品与案例
               </NuxtLink>
-              <NuxtLink to="/contact" class="wpcom-btn btn-primary text-xs">
+              <NuxtLink
+                to="/contact"
+                class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white px-4 py-2 text-xs font-medium shadow-xs hover:shadow-md transition-all cursor-pointer"
+              >
                 在线咨询客服
               </NuxtLink>
             </div>
@@ -255,7 +320,7 @@ useSeoMeta({
         </main>
 
         <!-- 右侧边栏 -->
-        <div class="wpcom-sidebar">
+        <div class="w-full lg:w-[300px] shrink-0">
           <SidebarWidget />
         </div>
       </div>

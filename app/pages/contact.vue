@@ -70,8 +70,8 @@ const faqs = [
       bg-image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
       :breadcrumbs="[{ label: '联系我们' }]" />
 
-    <div class="wpcom-container mb-16">
-      <!-- 1. 上半部分：微信二维码卡片 + 手风琴信息列表 (WPCOM modules-grid) -->
+    <div class="max-w-[1200px] mx-auto px-5 mb-16">
+      <!-- 1. 上半部分：微信二维码卡片 + 手风琴信息列表 -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-16">
         <!-- 左侧微信二维码 (col-md-4) -->
         <div class="md:col-span-4 bg-white border border-gray-200 rounded-sm p-6 text-center shadow-xs">
@@ -84,7 +84,7 @@ const faqs = [
           <p class="text-xs text-gray-500">直连资深技术工程师，在线解答工程疑问</p>
         </div>
 
-        <!-- 右侧手风琴列表 (col-md-8) (WPCOM modules-accordion) -->
+        <!-- 右侧手风琴列表 (col-md-8) -->
         <div class="md:col-span-8 space-y-3">
           <div v-for="(item, idx) in accordionItems" :key="idx"
             class="border border-gray-200 rounded-sm overflow-hidden bg-white transition-all">
@@ -109,7 +109,7 @@ const faqs = [
         </div>
       </div>
 
-      <!-- 2. 下半部分：联系我们表单区块 (WPCOM modules-my-module) -->
+      <!-- 2. 下半部分：联系我们表单区块 -->
       <div class="bg-gray-50/70 border border-gray-200/80 rounded-sm p-8 sm:p-12 mb-16">
         <SectionHeader title="联系我们" subtitle="与我们取得联系，我们将快速响应您的需求" />
 
@@ -140,7 +140,7 @@ const faqs = [
             </div>
 
             <div>
-              <button type="submit" class="wpcom-btn btn-primary w-full py-2.5 text-xs font-medium"
+              <button type="submit" class="w-full py-2.5 px-4 text-xs font-medium rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white flex items-center justify-center gap-2 shadow-xs hover:shadow-md transition-all cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                 :disabled="isSubmitting">
                 <i v-if="isSubmitting" class="fa-solid fa-spinner fa-spin"></i>
                 <span>{{ isSubmitting ? '正在提交...' : '发送' }}</span>

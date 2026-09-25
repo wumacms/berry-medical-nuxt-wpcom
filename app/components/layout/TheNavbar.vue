@@ -66,7 +66,7 @@ watch(() => route.fullPath, () => {
 
 <template>
   <header class="header bg-white sticky top-0 left-0 w-full z-50 border-b border-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-    <div class="wpcom-container h-[72px] flex items-center justify-between gap-6">
+    <div class="max-w-[1200px] mx-auto px-5 h-[72px] flex items-center justify-between gap-6">
       <!-- 网站 Logo -->
       <NuxtLink to="/" class="shrink-0 group flex items-center" rel="home">
         <AppLogo />
@@ -171,7 +171,7 @@ watch(() => route.fullPath, () => {
                 />
                 <button
                   type="submit"
-                  class="wpcom-btn btn-primary !py-2 !px-3 text-xs"
+                  class="inline-flex items-center justify-center gap-1.5 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-xs font-medium py-2 px-3 transition-colors cursor-pointer"
                 >
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -183,9 +183,10 @@ watch(() => route.fullPath, () => {
         <!-- 方案对接 CTA -->
         <NuxtLink
           to="/contact"
-          class="hidden sm:inline-flex wpcom-btn btn-primary !text-xs !py-2 !px-4"
+          class="hidden sm:inline-flex items-center justify-center gap-1.5 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-xs font-medium py-2 px-4 shadow-xs hover:shadow-md transition-all cursor-pointer group"
         >
-          咨询方案 <i class="fa-solid fa-arrow-right"></i>
+          <span>咨询方案</span>
+          <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-0.75 transition-transform duration-200"></i>
         </NuxtLink>
 
         <!-- 移动端汉堡菜单按钮 -->
@@ -238,7 +239,7 @@ watch(() => route.fullPath, () => {
                   placeholder="搜索本站内容..."
                   class="flex-1 text-xs bg-white border border-gray-200 rounded-sm px-3 py-2 outline-none focus:border-[#206be7]"
                 />
-                <button type="submit" class="wpcom-btn btn-primary !py-2 !px-3 text-xs">
+                <button type="submit" class="inline-flex items-center justify-center gap-1.5 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-xs font-medium py-2 px-3 transition-colors cursor-pointer">
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
               </form>
