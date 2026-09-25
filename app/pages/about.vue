@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SidebarWidget from "~/components/common/SidebarWidget.vue";
 import { companyContact } from "~/data/navigation";
+
+const { setCanonical, SITE_URL } = useJsonLd();
+setCanonical("/about");
 
 useSeoMeta({
   title: "关于我们 - 贝瑞医疗 · 专注核医学场所建设一站式服务",
   description: "贝瑞医疗科技（郑州）有限公司专注核医学场所建设全生命周期闭环解决方案，汇聚十五年以上行业经验团队，赋能医疗机构高质量建设。",
+  ogUrl: `${SITE_URL}/about`,
 });
 </script>
 

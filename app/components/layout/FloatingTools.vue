@@ -84,7 +84,7 @@ const handleShare = async () => {
         <!-- 微信二维码弹卡 -->
         <div class="absolute right-full top-0 mr-2.5 w-44 bg-white border border-gray-200 shadow-2xl rounded-xs p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-x-1 group-hover:translate-x-0 z-50 text-center">
           <div class="w-36 h-36 bg-gray-50 border border-gray-100 rounded-xs mx-auto overflow-hidden p-1 flex items-center justify-center">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.berrymedical.com.cn" alt="扫码关注微信" class="w-full h-full object-contain" />
+            <img :src="withBase('/images/qrcode.png')" alt="扫码关注微信" class="w-full h-full object-contain" />
           </div>
           <span class="block text-xs font-medium text-gray-800 mt-2">微信扫一扫</span>
           <span class="block text-[11px] text-gray-500">直连技术项目经理</span>

@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SectionHeader from "~/components/common/SectionHeader.vue";
 import { companyContact } from "~/data/navigation";
+
+const { setCanonical, SITE_URL } = useJsonLd();
+setCanonical("/contact");
 
 useSeoMeta({
   title: "联系我们 - 贝瑞医疗 · 核医学场所建设专业咨询",
   description: "欢迎联系贝瑞医疗科技，获取专属核医学场所建设、辐射防护施工、环评药监验收全套定制解决方案。",
+  ogUrl: `${SITE_URL}/contact`,
 });
 
 // Accordion open item
@@ -41,39 +43,8 @@ const accordionItems = [
   },
 ];
 
-// Form state
-const contactForm = reactive({
-  name: "",
-  phone: "",
-  message: "",
-});
-const isSubmitting = ref(false);
-const submitSuccess = ref(false);
-
-const handleSubmit = async () => {
-  if (!contactForm.name || !contactForm.phone) {
-    alert("请填写您的名字与联系电话");
-    return;
-  }
-  isSubmitting.value = true;
-  try {
-    await $fetch("/api/contact", {
-      method: "POST",
-      body: { ...contactForm },
-    });
-    submitSuccess.value = true;
-    contactForm.name = "";
-    contactForm.phone = "";
-    contactForm.message = "";
-    setTimeout(() => {
-      submitSuccess.value = false;
-    }, 4500);
-  } catch (error: any) {
-    alert(error?.data?.statusMessage || "提交失败，请稍后重试");
-  } finally {
-    isSubmitting.value = false;
-  }
-};
+// 使用 composable 统一表单逻辑
+const { form: contactForm, isSubmitting, submitSuccess, submitForm: handleSubmit } = useContactForm();
 
 // FAQ items
 const faqs = [
@@ -106,7 +77,7 @@ const faqs = [
         <div class="md:col-span-4 bg-white border border-gray-200 rounded-sm p-6 text-center shadow-xs">
           <div
             class="w-48 h-48 mx-auto bg-gray-50 border border-gray-100 rounded-sm overflow-hidden p-2 flex items-center justify-center">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.berrymedical.com.cn"
+            <img :src="withBase('/images/qrcode.png')"
               alt="微信扫码关注我们" class="w-full h-full object-contain" />
           </div>
           <h4 class="text-sm font-semibold text-gray-900 mt-4 mb-1">微信扫码关注我们</h4>

@@ -8,6 +8,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
 
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false,
+    },
+  ],
+
   app: {
     baseURL,
     head: {
@@ -48,6 +55,10 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: ["/sitemap.xml"],
+    },
+    routeRules: {
+      "/company": { redirect: { to: "/about", statusCode: 301 } },
+      "/category/product": { redirect: { to: "/cases", statusCode: 301 } },
     },
   },
 

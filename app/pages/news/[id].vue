@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SidebarWidget from "~/components/common/SidebarWidget.vue";
 import { newsList } from "~/data/news";
 
 const route = useRoute();
@@ -8,6 +6,22 @@ const articleId = computed(() => Number(route.params.id) || 1);
 
 const currentArticle = computed(() => {
   return newsList.find((item) => item.id === articleId.value) ?? newsList[0]!;
+});
+
+const { setCanonical, setArticleSchema, SITE_URL } = useJsonLd();
+setCanonical(`/news/${articleId.value}`);
+
+watchEffect(() => {
+  if (currentArticle.value) {
+    setArticleSchema({
+      id: currentArticle.value.id,
+      title: currentArticle.value.title,
+      summary: currentArticle.value.summary,
+      imageUrl: currentArticle.value.imageUrl,
+      date: currentArticle.value.date,
+      author: currentArticle.value.author,
+    });
+  }
 });
 
 // Prev / Next Article
@@ -26,6 +40,7 @@ useSeoMeta({
   ogTitle: () => currentArticle.value?.title,
   ogDescription: () => currentArticle.value?.summary,
   ogImage: () => currentArticle.value?.imageUrl,
+  ogUrl: () => `${SITE_URL}/news/${articleId.value}`,
 });
 </script>
 

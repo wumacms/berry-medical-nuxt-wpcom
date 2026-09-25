@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppLogo from "~/components/common/AppLogo.vue";
+import { mainNav, companyContact } from "~/data/navigation";
 
 const route = useRoute();
 const router = useRouter();
@@ -37,13 +37,25 @@ const closeMobileMenu = () => {
 };
 
 // Submenu dropdown toggles for mobile
-const mobileSubmenuOpen = ref<Record<string, boolean>>({
-  templates: false,
-  services: false,
-});
+const mobileSubmenuOpen = ref<Record<string, boolean>>({});
 
 const toggleMobileSubmenu = (key: string) => {
   mobileSubmenuOpen.value[key] = !mobileSubmenuOpen.value[key];
+};
+
+// Check if nav item or its children match current route
+const isActiveNav = (item: (typeof mainNav)[0]) => {
+  if (route.path === item.path) return true;
+  if (item.path !== "/" && route.path.startsWith(item.path.split("#")[0].split("?")[0])) return true;
+  if (item.children?.some((c) => route.path === c.path.split("#")[0].split("?")[0])) return true;
+  // Special: /about and /company share the same page
+  if (item.path === "/about" && route.path === "/company") return true;
+  return false;
+};
+
+// Determine if a dropdown has images (mega-menu style) or is a simple list
+const hasMegaMenu = (item: (typeof mainNav)[0]) => {
+  return item.children?.some((c) => c.image);
 };
 
 watch(() => route.fullPath, () => {
@@ -60,136 +72,67 @@ watch(() => route.fullPath, () => {
         <AppLogo />
       </NuxtLink>
 
-      <!-- 桌面端导航菜单 (WPCOM Module 7 Style) -->
+      <!-- 桌面端导航菜单 (数据驱动) -->
       <nav class="hidden lg:flex items-center space-x-1 h-full">
-        <!-- 首页 -->
-        <NuxtLink
-          to="/"
-          class="nav-item h-full flex items-center px-3.5 text-sm font-medium text-gray-800 transition-colors relative hover:text-[#206be7]"
-          :class="{ 'text-[#206be7] font-semibold active-nav': route.path === '/' }"
-        >
-          首页
-          <span v-if="route.path === '/'" class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#206be7]"></span>
-        </NuxtLink>
-
-        <!-- 产品列表 -->
-        <NuxtLink
-          to="/cases"
-          class="nav-item h-full flex items-center px-3.5 text-sm font-medium text-gray-800 transition-colors relative hover:text-[#206be7]"
-          :class="{ 'text-[#206be7] font-semibold active-nav': route.path === '/cases' || route.path.startsWith('/cases/') }"
-        >
-          产品列表
-          <span v-if="route.path === '/cases' || route.path.startsWith('/cases/')" class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#206be7]"></span>
-        </NuxtLink>
-
-        <!-- 列表模板 下拉菜单 -->
-        <div class="relative group h-full flex items-center">
-          <button
-            class="nav-item h-full flex items-center gap-1 px-3.5 text-sm font-medium text-gray-800 hover:text-[#206be7] transition-colors cursor-pointer"
-            :class="{ 'text-[#206be7] font-semibold': route.path.startsWith('/news') }"
-          >
-            列表模板
-            <i class="fa-solid fa-angle-down text-[10px] text-gray-400 group-hover:text-[#206be7] transition-transform group-hover:rotate-180"></i>
-          </button>
-
-          <!-- 下拉子菜单 -->
-          <div class="dropdown-menu absolute top-full left-0 w-44 bg-white border border-gray-100 shadow-xl rounded-b-sm py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 z-50">
-            <NuxtLink
-              to="/news"
-              class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-blue-50/80 hover:text-[#206be7] transition"
-            >
-              默认列表 (全部动态)
-            </NuxtLink>
-            <NuxtLink
-              to="/cases"
-              class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-blue-50/80 hover:text-[#206be7] transition"
-            >
-              产品列表 (网格卡片)
-            </NuxtLink>
-            <NuxtLink
-              to="/news?category=industry"
-              class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-blue-50/80 hover:text-[#206be7] transition"
-            >
-              图文列表 (行业动态)
-            </NuxtLink>
-            <NuxtLink
-              to="/news?category=company"
-              class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-blue-50/80 hover:text-[#206be7] transition"
-            >
-              文章列表 (公司新闻)
-            </NuxtLink>
-          </div>
-        </div>
-
-        <!-- 服务方案 (图文高级下拉菜单 WPCOM Advanced Menu) -->
-        <div class="relative group h-full flex items-center">
+        <template v-for="item in mainNav" :key="item.path">
+          <!-- 无子菜单：普通导航链接 -->
           <NuxtLink
-            to="/services"
-            class="nav-item h-full flex items-center gap-1 px-3.5 text-sm font-medium text-gray-800 hover:text-[#206be7] transition-colors"
-            :class="{ 'text-[#206be7] font-semibold active-nav': route.path === '/services' }"
+            v-if="!item.children"
+            :to="item.path"
+            class="nav-item h-full flex items-center px-3.5 text-sm font-medium text-gray-800 transition-colors relative hover:text-[#206be7]"
+            :class="{ 'text-[#206be7] font-semibold active-nav': isActiveNav(item) }"
           >
-            服务体系
-            <i class="fa-solid fa-angle-down text-[10px] text-gray-400 group-hover:text-[#206be7] transition-transform group-hover:rotate-180"></i>
-            <span v-if="route.path === '/services'" class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#206be7]"></span>
+            {{ item.title }}
+            <span v-if="isActiveNav(item)" class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#206be7]"></span>
           </NuxtLink>
 
-          <!-- 高级图文菜单 -->
-          <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 w-[560px] bg-white border border-gray-100 shadow-2xl rounded-b-sm p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 z-50 grid grid-cols-3 gap-3">
-            <NuxtLink to="/services#design" class="block p-2 rounded-sm hover:bg-blue-50/60 transition group/sub">
-              <div class="aspect-16/10 rounded-sm overflow-hidden bg-gray-100 mb-2">
-                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=300&auto=format&fit=crop" alt="设计篇" class="w-full h-full object-cover group-hover/sub:scale-105 transition" />
-              </div>
-              <span class="block text-xs font-semibold text-gray-900 group-hover/sub:text-[#206be7]">设计篇 · 选址与工艺</span>
-              <span class="block text-[11px] text-gray-500 truncate mt-0.5">分区规划与防护施工图</span>
+          <!-- 有子菜单：带下拉的导航项 -->
+          <div v-else class="relative group h-full flex items-center">
+            <NuxtLink
+              :to="item.path"
+              class="nav-item h-full flex items-center gap-1 px-3.5 text-sm font-medium text-gray-800 hover:text-[#206be7] transition-colors"
+              :class="{ 'text-[#206be7] font-semibold active-nav': isActiveNav(item) }"
+            >
+              {{ item.title }}
+              <i class="fa-solid fa-angle-down text-[10px] text-gray-400 group-hover:text-[#206be7] transition-transform group-hover:rotate-180"></i>
+              <span v-if="isActiveNav(item)" class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#206be7]"></span>
             </NuxtLink>
 
-            <NuxtLink to="/services#construction" class="block p-2 rounded-sm hover:bg-blue-50/60 transition group/sub">
-              <div class="aspect-16/10 rounded-sm overflow-hidden bg-gray-100 mb-2">
-                <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=300&auto=format&fit=crop" alt="施工篇" class="w-full h-full object-cover group-hover/sub:scale-105 transition" />
-              </div>
-              <span class="block text-xs font-semibold text-gray-900 group-hover/sub:text-[#206be7]">施工篇 · 辐射防护</span>
-              <span class="block text-[11px] text-gray-500 truncate mt-0.5">衰变池与洁净净化工程</span>
-            </NuxtLink>
+            <!-- 图文高级下拉菜单 (mega-menu) -->
+            <div
+              v-if="hasMegaMenu(item)"
+              class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 w-[560px] bg-white border border-gray-100 shadow-2xl rounded-b-sm p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 z-50 grid grid-cols-3 gap-3"
+            >
+              <NuxtLink
+                v-for="child in item.children"
+                :key="child.path"
+                :to="child.path"
+                class="block p-2 rounded-sm hover:bg-blue-50/60 transition group/sub"
+              >
+                <div class="aspect-16/10 rounded-sm overflow-hidden bg-gray-100 mb-2">
+                  <img :src="child.image" :alt="child.title" class="w-full h-full object-cover group-hover/sub:scale-105 transition" />
+                </div>
+                <span class="block text-xs font-semibold text-gray-900 group-hover/sub:text-[#206be7]">{{ child.title }}</span>
+                <span class="block text-[11px] text-gray-500 truncate mt-0.5">{{ child.description }}</span>
+              </NuxtLink>
+            </div>
 
-            <NuxtLink to="/services#equipment" class="block p-2 rounded-sm hover:bg-blue-50/60 transition group/sub">
-              <div class="aspect-16/10 rounded-sm overflow-hidden bg-gray-100 mb-2">
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=300&auto=format&fit=crop" alt="设备与运维" class="w-full h-full object-cover group-hover/sub:scale-105 transition" />
-              </div>
-              <span class="block text-xs font-semibold text-gray-900 group-hover/sub:text-[#206be7]">运维篇 · 数字孪生</span>
-              <span class="block text-[11px] text-gray-500 truncate mt-0.5">瑞核V1.0态势感知平台</span>
-            </NuxtLink>
+            <!-- 普通下拉子菜单 -->
+            <div
+              v-else
+              class="dropdown-menu absolute top-full left-0 w-44 bg-white border border-gray-100 shadow-xl rounded-b-sm py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 z-50"
+            >
+              <NuxtLink
+                v-for="child in item.children"
+                :key="child.path"
+                :to="child.path"
+                class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-blue-50/80 hover:text-[#206be7] transition"
+              >
+                {{ child.title }}
+              </NuxtLink>
+            </div>
           </div>
-        </div>
-
-        <!-- 专业优势 -->
-        <NuxtLink
-          to="/advantages"
-          class="nav-item h-full flex items-center px-3.5 text-sm font-medium text-gray-800 transition-colors relative hover:text-[#206be7]"
-          :class="{ 'text-[#206be7] font-semibold active-nav': route.path === '/advantages' }"
-        >
-          专业优势
-          <span v-if="route.path === '/advantages'" class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#206be7]"></span>
-        </NuxtLink>
-
-        <!-- 关于我们 -->
-        <NuxtLink
-          to="/about"
-          class="nav-item h-full flex items-center px-3.5 text-sm font-medium text-gray-800 transition-colors relative hover:text-[#206be7]"
-          :class="{ 'text-[#206be7] font-semibold active-nav': route.path === '/about' || route.path === '/company' }"
-        >
-          关于我们
-          <span v-if="route.path === '/about' || route.path === '/company'" class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#206be7]"></span>
-        </NuxtLink>
-
-        <!-- 联系我们 -->
-        <NuxtLink
-          to="/contact"
-          class="nav-item h-full flex items-center px-3.5 text-sm font-medium text-gray-800 transition-colors relative hover:text-[#206be7]"
-          :class="{ 'text-[#206be7] font-semibold active-nav': route.path === '/contact' }"
-        >
-          联系我们
-          <span v-if="route.path === '/contact'" class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#206be7]"></span>
-        </NuxtLink>
+        </template>
       </nav>
 
       <!-- 头部右侧操作区 (搜索 + 咨询按钮 + 移动端折叠) -->
@@ -301,85 +244,49 @@ watch(() => route.fullPath, () => {
               </form>
             </div>
 
-            <!-- 抽屉导航链接 -->
+            <!-- 抽屉导航链接 (数据驱动) -->
             <div class="py-2 px-3 space-y-1 text-sm font-medium">
-              <NuxtLink
-                to="/"
-                class="block px-3 py-2.5 rounded-sm hover:bg-blue-50/60 hover:text-[#206be7] transition"
-                :class="{ 'bg-blue-50 text-[#206be7] font-semibold': route.path === '/' }"
-                @click="closeMobileMenu"
-              >
-                首页
-              </NuxtLink>
-
-              <NuxtLink
-                to="/cases"
-                class="block px-3 py-2.5 rounded-sm hover:bg-blue-50/60 hover:text-[#206be7] transition"
-                :class="{ 'bg-blue-50 text-[#206be7] font-semibold': route.path === '/cases' }"
-                @click="closeMobileMenu"
-              >
-                产品列表
-              </NuxtLink>
-
-              <!-- 模板下拉折叠 -->
-              <div>
-                <button
-                  class="w-full flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-blue-50/60 text-left transition"
-                  @click="toggleMobileSubmenu('templates')"
+              <template v-for="item in mainNav" :key="item.path">
+                <!-- 无子菜单 -->
+                <NuxtLink
+                  v-if="!item.children"
+                  :to="item.path"
+                  class="block px-3 py-2.5 rounded-sm hover:bg-blue-50/60 hover:text-[#206be7] transition"
+                  :class="{ 'bg-blue-50 text-[#206be7] font-semibold': isActiveNav(item) }"
+                  @click="closeMobileMenu"
                 >
-                  <span>列表模板</span>
-                  <i class="fa-solid fa-angle-down text-xs transition-transform" :class="{ 'rotate-180': mobileSubmenuOpen.templates }"></i>
-                </button>
-                <div v-if="mobileSubmenuOpen.templates" class="pl-4 pr-2 py-1 space-y-1 bg-gray-50/60 rounded-sm text-xs">
-                  <NuxtLink to="/news" class="block py-2 px-2 text-gray-600 hover:text-[#206be7]" @click="closeMobileMenu">全部动态</NuxtLink>
-                  <NuxtLink to="/cases" class="block py-2 px-2 text-gray-600 hover:text-[#206be7]" @click="closeMobileMenu">产品列表</NuxtLink>
-                  <NuxtLink to="/news?category=industry" class="block py-2 px-2 text-gray-600 hover:text-[#206be7]" @click="closeMobileMenu">图文列表 (行业动态)</NuxtLink>
-                  <NuxtLink to="/news?category=company" class="block py-2 px-2 text-gray-600 hover:text-[#206be7]" @click="closeMobileMenu">文章列表 (公司新闻)</NuxtLink>
+                  {{ item.title }}
+                </NuxtLink>
+
+                <!-- 有子菜单：折叠展开 -->
+                <div v-else>
+                  <button
+                    class="w-full flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-blue-50/60 text-left transition"
+                    @click="toggleMobileSubmenu(item.path)"
+                  >
+                    <span>{{ item.title }}</span>
+                    <i class="fa-solid fa-angle-down text-xs transition-transform" :class="{ 'rotate-180': mobileSubmenuOpen[item.path] }"></i>
+                  </button>
+                  <div v-if="mobileSubmenuOpen[item.path]" class="pl-4 pr-2 py-1 space-y-1 bg-gray-50/60 rounded-sm text-xs">
+                    <NuxtLink
+                      v-for="child in item.children"
+                      :key="child.path"
+                      :to="child.path"
+                      class="block py-2 px-2 text-gray-600 hover:text-[#206be7]"
+                      @click="closeMobileMenu"
+                    >
+                      {{ child.title }}
+                    </NuxtLink>
+                  </div>
                 </div>
-              </div>
-
-              <NuxtLink
-                to="/services"
-                class="block px-3 py-2.5 rounded-sm hover:bg-blue-50/60 hover:text-[#206be7] transition"
-                :class="{ 'bg-blue-50 text-[#206be7] font-semibold': route.path === '/services' }"
-                @click="closeMobileMenu"
-              >
-                服务体系
-              </NuxtLink>
-
-              <NuxtLink
-                to="/advantages"
-                class="block px-3 py-2.5 rounded-sm hover:bg-blue-50/60 hover:text-[#206be7] transition"
-                :class="{ 'bg-blue-50 text-[#206be7] font-semibold': route.path === '/advantages' }"
-                @click="closeMobileMenu"
-              >
-                专业优势
-              </NuxtLink>
-
-              <NuxtLink
-                to="/about"
-                class="block px-3 py-2.5 rounded-sm hover:bg-blue-50/60 hover:text-[#206be7] transition"
-                :class="{ 'bg-blue-50 text-[#206be7] font-semibold': route.path === '/about' }"
-                @click="closeMobileMenu"
-              >
-                关于我们
-              </NuxtLink>
-
-              <NuxtLink
-                to="/contact"
-                class="block px-3 py-2.5 rounded-sm hover:bg-blue-50/60 hover:text-[#206be7] transition"
-                :class="{ 'bg-blue-50 text-[#206be7] font-semibold': route.path === '/contact' }"
-                @click="closeMobileMenu"
-              >
-                联系我们
-              </NuxtLink>
+              </template>
             </div>
           </div>
 
           <!-- 抽屉底部热线 -->
           <div class="p-4 border-t border-gray-100 bg-gray-50 text-xs text-gray-600">
             <span class="block text-gray-400">服务热线</span>
-            <span class="block text-base font-bold text-[#206be7] mt-1">185-0387-8846</span>
+            <span class="block text-base font-bold text-[#206be7] mt-1">{{ companyContact.phone }}</span>
           </div>
         </div>
       </div>

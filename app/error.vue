@@ -85,7 +85,7 @@ const handleError = () => {
             <span class="text-gray-300">·</span>
             <NuxtLink to="/advantages" class="hover:text-primary transition">专业优势</NuxtLink>
             <span class="text-gray-300">·</span>
-            <NuxtLink to="/company" class="hover:text-primary transition">企业简介</NuxtLink>
+            <NuxtLink to="/about" class="hover:text-primary transition">企业简介</NuxtLink>
             <span class="text-gray-300">·</span>
             <NuxtLink to="/news" class="hover:text-primary transition">新闻动态</NuxtLink>
           </div>

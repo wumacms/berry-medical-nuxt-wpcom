@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SectionHeader from "~/components/common/SectionHeader.vue";
 import {
   advantageStats,
   coreAdvantages,

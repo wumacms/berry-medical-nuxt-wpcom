@@ -2,6 +2,14 @@ export interface NavItem {
   title: string;
   path: string;
   icon?: string;
+  /** 子菜单项（支持下拉菜单） */
+  children?: NavItem[];
+  /** 高级菜单卡片图片（用于图文式下拉） */
+  image?: string;
+  /** 高级菜单卡片描述 */
+  description?: string;
+  /** 是否在桌面导航隐藏（仅在移动端显示） */
+  mobileOnly?: boolean;
 }
 
 export interface CaseItem {

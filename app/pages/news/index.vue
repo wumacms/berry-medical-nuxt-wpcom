@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SidebarWidget from "~/components/common/SidebarWidget.vue";
 import { newsList, newsCategories } from "~/data/news";
 
 const route = useRoute();
@@ -73,9 +71,15 @@ const setViewMode = (mode: "card" | "list") => {
   });
 };
 
+const { setCanonical, SITE_URL } = useJsonLd();
+setCanonical("/news");
+
 useSeoMeta({
-  title: `${currentCategoryLabel.value} - 新闻动态 - 贝瑞医疗`,
+  title: () => `${currentCategoryLabel.value} - 新闻动态 - 贝瑞医疗`,
   description: "汇聚贝瑞医疗最新公司资讯、核医学科场所建设行业动态、技术解析及政策规范解读。",
+  ogTitle: () => `${currentCategoryLabel.value} - 新闻动态 - 贝瑞医疗`,
+  ogDescription: "汇聚贝瑞医疗最新公司资讯、核医学科场所建设行业动态、技术解析及政策规范解读。",
+  ogUrl: `${SITE_URL}/news`,
 });
 </script>
 

@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import TheNavbar from "~/components/layout/TheNavbar.vue";
-import TheFooter from "~/components/layout/TheFooter.vue";
-import FloatingTools from "~/components/layout/FloatingTools.vue";
-</script>
-
 <template>
   <div class="min-h-screen flex flex-col bg-white text-dark font-sans selection:bg-primary/20 selection:text-primary pb-14 lg:pb-0">
     <!-- 全局导航栏 -->

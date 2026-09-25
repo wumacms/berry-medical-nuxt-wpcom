@@ -1,49 +1,6 @@
 <script setup lang="ts">
-import type { ContactFormData } from "~/types";
-
-const form = reactive<ContactFormData>({
-  name: "",
-  phone: "",
-  email: "",
-  type: "",
-  message: "",
-});
-
-const isSubmitting = ref(false);
-const submitSuccess = ref(false);
-const errorMessage = ref("");
-
-const submitForm = async () => {
-  errorMessage.value = "";
-  if (!form.name.trim()) {
-    errorMessage.value = "请填写您的姓名";
-    return;
-  }
-  if (!form.phone.trim()) {
-    errorMessage.value = "请填写联系电话";
-    return;
-  }
-
-  isSubmitting.value = true;
-  try {
-    const res = await $fetch<{ success: boolean; message: string }>("/api/contact", {
-      method: "POST",
-      body: form,
-    });
-    if (res.success) {
-      submitSuccess.value = true;
-      form.name = "";
-      form.phone = "";
-      form.email = "";
-      form.type = "";
-      form.message = "";
-    }
-  } catch (err: any) {
-    errorMessage.value = err?.data?.statusMessage || "提交失败，请稍后重试或直接电话联系我们";
-  } finally {
-    isSubmitting.value = false;
-  }
-};
+// 使用统一的 composable 取代内联表单逻辑
+const { form, isSubmitting, submitSuccess, errorMessage, submitForm } = useContactForm();
 </script>
 
 <template>

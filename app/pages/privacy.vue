@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
 import { companyContact } from "~/data/navigation";
+
+const { setCanonical, SITE_URL } = useJsonLd();
+setCanonical("/privacy");
 
 useSeoMeta({
   title: "隐私政策 - 贝瑞医疗",
   description: "贝瑞医疗高度重视您的个人信息保护。本政策说明我们如何收集、使用、存储和保护您的个人信息，以及您所享有的权利。",
+  ogTitle: "隐私政策 - 贝瑞医疗",
+  ogDescription: "贝瑞医疗高度重视您的个人信息保护。本政策说明我们如何收集、使用、存储和保护您的个人信息，以及您所享有的权利。",
+  ogUrl: `${SITE_URL}/privacy`,
 });
 
 const menuItems = [

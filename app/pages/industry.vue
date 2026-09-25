@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SectionHeader from "~/components/common/SectionHeader.vue";
+const { setCanonical, SITE_URL } = useJsonLd();
+setCanonical("/industry");
 
 useSeoMeta({
   title: "行业背景 - 贝瑞医疗 · 核医学迎来精准医疗新时代",
   description: "全球健康挑战日益凸显，癌症与神经退行性疾病高发。核医学凭借在重大疾病诊疗中的独特优势，成为精准医疗领域的核心力量。",
+  ogTitle: "行业背景 - 贝瑞医疗 · 核医学迎来精准医疗新时代",
+  ogDescription: "全球健康挑战日益凸显，癌症与神经退行性疾病高发。核医学凭借在重大疾病诊疗中的独特优势，成为精准医疗领域的核心力量。",
+  ogUrl: `${SITE_URL}/industry`,
 });
 
 const challenges = [

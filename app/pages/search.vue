@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SidebarWidget from "~/components/common/SidebarWidget.vue";
 import { caseList } from "~/data/cases";
 import { newsList } from "~/data/news";
 
@@ -116,6 +114,9 @@ const highlightKeyword = (text: string) => {
   const regex = new RegExp(`(${safeKw})`, "gi");
   return safeText.replace(regex, `<mark class="bg-yellow-200 text-gray-900 rounded-xs px-0.5">$1</mark>`);
 };
+
+const { setCanonical } = useJsonLd();
+setCanonical("/search");
 
 useSeoMeta({
   title: () => currentSearchText.value ? `关于「${currentSearchText.value}」的搜索结果 - 贝瑞医疗` : "全站搜索 - 贝瑞医疗",

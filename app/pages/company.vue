@@ -1,4 +1,10 @@
 <script setup lang="ts">
-// /company 重定向到 /about，避免跨页面 import 破坏代码分割
+// /company → /about 永久重定向
+// 同时在 nuxt.config.ts 的 routeRules 中也有对应的服务端配置
+// 这里作为客户端 fallback，保证 SPA 跳转也能正确重定向
 navigateTo("/about", { redirectCode: 301 });
 </script>
+
+<template>
+  <div />
+</template>

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SidebarWidget from "~/components/common/SidebarWidget.vue";
 import type { CaseItem } from "~/types";
 import { caseList } from "~/data/cases";
 
 const route = useRoute();
 const caseId = computed(() => Number(route.params.id) || 1);
+
+const { setCanonical, SITE_URL } = useJsonLd();
+setCanonical(`/cases/${caseId.value}`);
 
 // Find current item or default to first
 const currentCase = computed<CaseItem>(() => {
@@ -44,6 +45,7 @@ useSeoMeta({
   ogTitle: () => currentCase.value.title,
   ogDescription: () => currentCase.value.summary,
   ogImage: () => currentCase.value.imageUrl,
+  ogUrl: () => `${SITE_URL}/cases/${caseId.value}`,
 });
 </script>
 

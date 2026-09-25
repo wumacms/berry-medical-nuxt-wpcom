@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import PageBanner from "~/components/common/PageBanner.vue";
-import SidebarWidget from "~/components/common/SidebarWidget.vue";
 import { caseList, caseCategories } from "~/data/cases";
 
 const { setCanonical, SITE_URL } = useJsonLd();

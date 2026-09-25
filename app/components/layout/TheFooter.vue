@@ -108,7 +108,7 @@ const wechatPopup = ref(false);
                   class="absolute bottom-full left-0 mb-3 bg-white p-3 rounded shadow-2xl z-50 text-center w-36 pointer-events-none"
                 >
                   <div class="w-30 h-30 bg-gray-100 rounded overflow-hidden mx-auto flex items-center justify-center p-1">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.berrymedical.com.cn" alt="微信二维码" class="w-full h-full object-contain" />
+                    <img :src="withBase('/images/qrcode.png')" alt="微信二维码" class="w-full h-full object-contain" />
                   </div>
                   <span class="block text-[11px] text-gray-700 mt-1.5 font-medium">扫码咨询工程师</span>
                 </div>
