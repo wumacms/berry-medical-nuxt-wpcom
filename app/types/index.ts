@@ -60,11 +60,6 @@ export interface AdvantageItem {
   points: string[];
 }
 
-export interface FaqItem {
-  question: string;
-  answer: string;
-}
-
 export interface ContactFormData {
   name: string;
   phone: string;

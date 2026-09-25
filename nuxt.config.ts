@@ -69,6 +69,4 @@ export default defineNuxtConfig({
   devServer: {
     port: 4000,
   },
-
-  modules: ["nuxt-icons"],
 });

@@ -16,7 +16,6 @@
     "@fortawesome/fontawesome-free": "^7.3.1",
     "@tailwindcss/vite": "^4.3.3",
     "nuxt": "^4.5.2",
-    "nuxt-icons": "4.0.0",
     "tailwindcss": "^4.3.3",
     "vue": "^3.5.43",
     "vue-router": "^5.3.1"

@@ -20,8 +20,7 @@ Engineering）的专业审美标准，对全站进行了品牌色彩、矢量徽
 ### 2. 品牌色彩系统升级与冷暖平衡
 
 - **扩充医工科技色彩 Token**（在
-  [main.css](berry-medical-nuxt-wpcom-wpcom/app/assets/css/main.css)
-  中定义）：
+  [main.css](berry-medical-nuxt-wpcom-wpcom/app/assets/css/main.css) 中定义）：
   - `--color-primary: #E37722`：保留标志性高能橙色作为行动召唤（CTA）与聚焦高光。
   - `--color-navy: #0B192C`、`--color-navy-dark: #060D17`：引入钛金深邃深蓝底色。
   - `--color-tech-cyan: #0EA5E9`：引入数字孪生遥测与微光辅助色。
@@ -36,11 +35,11 @@ Engineering）的专业审美标准，对全站进行了品牌色彩、矢量徽
 组贴合业务核心的高保真专属场景：
 
 ```carousel
-![PET-CT 一体化机房与辐射屏蔽套间](/Users/devlink/.gemini/antigravity-ide/brain/b95d65ef-9abd-4a49-9b75-1da2d6d6fc8c/hero_petct_suite_1790209507458.jpg)
+![PET-CT 一体化机房与辐射屏蔽套间](~/.gemini/antigravity-ide/brain/b95d65ef-9abd-4a49-9b75-1da2d6d6fc8c/hero_petct_suite_1790209507458.jpg)
 <!-- slide -->
-![瑞核 V1.0 数字孪生全景空间模型与实时遥测](/Users/devlink/.gemini/antigravity-ide/brain/b95d65ef-9abd-4a49-9b75-1da2d6d6fc8c/digital_twin_system_1790209521905.jpg)
+![瑞核 V1.0 数字孪生全景空间模型与实时遥测](~/.gemini/antigravity-ide/brain/b95d65ef-9abd-4a49-9b75-1da2d6d6fc8c/digital_twin_system_1790209521905.jpg)
 <!-- slide -->
-![防辐射重型电动铅门与控制室工作台](/Users/devlink/.gemini/antigravity-ide/brain/b95d65ef-9abd-4a49-9b75-1da2d6d6fc8c/shielding_control_suite_1790209544492.jpg)
+![防辐射重型电动铅门与控制室工作台](~/.gemini/antigravity-ide/brain/b95d65ef-9abd-4a49-9b75-1da2d6d6fc8c/shielding_control_suite_1790209544492.jpg)
 ```
 
 1. **PET-CT
@@ -53,8 +52,7 @@ Engineering）的专业审美标准，对全站进行了品牌色彩、矢量徽
 
 ### 4. 打破版式同质化：沉浸式深色科技展台
 
-- **在
-  [advantages.vue](berry-medical-nuxt-wpcom-wpcom/app/pages/advantages.vue)
+- **在 [advantages.vue](berry-medical-nuxt-wpcom-wpcom/app/pages/advantages.vue)
   中**：将“瑞核 V1.0
   数字孪生系统”区块彻底重构为**深邃深蓝背景（`bg-navy-dark`）+
   磨砂玻璃卡片（`backdrop-blur-md`）+ 动态遥测指示器（`0.05 μSv/h`
