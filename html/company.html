@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企业简介 · 贝瑞医疗 · 核医学场所建设一站式服务</title>
+  <!-- TailwindCSS 4 CDN（使用指定地址） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 免费图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    // 配置主题，注入品牌色与字体
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#E37722',
+            dark: '#3F3B3A',
+            light: '#F6F7F7',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-white font-sans text-dark antialiased">
+
+  <!-- ========== 全局导航栏 Navbar Section（高亮“企业简介”） ========== -->
+  <header class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
+          <div
+            class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-bold text-xl shadow-md">
+            <i class="fa-solid fa-radiation text-lg"></i>
+          </div>
+          <div class="leading-tight">
+            <span class="block text-lg font-bold tracking-tight text-dark">贝瑞医疗</span>
+            <span class="block text-[10px] text-gray-400 tracking-wider">BERRY MEDICAL</span>
+          </div>
+        </a>
+
+        <!-- 桌面导航菜单：高亮“企业简介” -->
+        <nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-dark/80">
+          <a href="index.html" class="hover:text-primary transition">首页</a>
+          <a href="industry.html" class="hover:text-primary transition">行业背景</a>
+          <a href="company.html" class="text-primary border-b-2 border-primary pb-1 transition">企业简介</a>
+          <a href="services.html" class="hover:text-primary transition">服务内容</a>
+          <a href="advantages.html" class="hover:text-primary transition">专业优势</a>
+          <a href="cases.html" class="hover:text-primary transition">业绩介绍</a>
+          <a href="contact.html" class="hover:text-primary transition">联系我们</a>
+        </nav>
+
+        <!-- 右侧操作区 -->
+        <div class="flex items-center gap-3">
+          <button class="hidden lg:block text-dark/60 hover:text-primary transition">
+            <i class="fa-solid fa-magnifying-glass text-lg"></i>
+          </button>
+          <a href="contact.html"
+            class="hidden sm:inline-flex items-center gap-2 bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md shadow-primary/20 hover:bg-primary/90 transition">
+            <i class="fa-regular fa-comment-dots"></i> 咨询方案
+          </a>
+          <!-- 移动端菜单按钮 -->
+          <button id="menuBtn" class="md:hidden text-dark/70 text-2xl" aria-label="打开菜单">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 移动端下拉菜单 -->
+    <nav id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white">
+      <div class="px-4 py-3 space-y-1 text-sm font-medium text-dark/80">
+        <a href="index.html" class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">首页</a>
+        <a href="industry.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">行业背景</a>
+        <a href="company.html"
+          class="block px-3 py-2.5 rounded-lg bg-light text-primary font-semibold transition">企业简介</a>
+        <a href="services.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">服务内容</a>
+        <a href="advantages.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">专业优势</a>
+        <a href="cases.html" class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">业绩介绍</a>
+        <a href="contact.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">联系我们</a>
+        <a href="contact.html" class="block px-3 py-2.5 rounded-lg bg-primary text-white text-center mt-2">咨询方案</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 固定导航占位 -->
+  <div class="h-20"></div>
+
+  <!-- ========== 首屏 / 企业定位区块 Hero Section ========== -->
+  <section class="bg-linear-to-br from-white via-light to-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- 左侧文字 -->
+        <div class="space-y-6">
+          <div
+            class="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide">
+            <i class="fa-solid fa-building text-[10px]"></i> COMPANY PROFILE
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-dark leading-[1.15] tracking-tight">
+            核医学场所建设<br>
+            <span class="text-primary">一站式服务商</span>
+          </h1>
+          <p class="text-base text-dark/60 leading-relaxed max-w-lg">
+            贝瑞医疗科技（郑州）有限公司，深耕核医学场所建设全产业链多年，为客户提供从前期规划到后期运维的闭环解决方案。
+          </p>
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#business"
+              class="bg-primary text-white font-semibold px-7 py-3.5 rounded-full shadow-lg shadow-primary/30 hover:bg-primary/90 transition flex items-center gap-2 text-sm">
+              了解业务范围 <i class="fa-solid fa-arrow-down text-xs"></i>
+            </a>
+            <a href="contact.html"
+              class="bg-white text-dark font-semibold px-7 py-3.5 rounded-full border border-gray-200 hover:border-primary/30 hover:text-primary transition flex items-center gap-2 text-sm">
+              <i class="fa-regular fa-circle-question text-primary"></i> 咨询合作
+            </a>
+          </div>
+        </div>
+        <!-- 右侧主视觉 -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-2xl shadow-dark/10 bg-light aspect-4/3 flex items-center justify-center">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1470&auto=format&fit=crop"
+            alt="贝瑞医疗办公环境" class="w-full h-full object-cover" loading="eager">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 企业定位 + 关键数据区块 Stats Section ========== -->
+  <section class="py-20 lg:py-24 bg-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- 左侧：定位描述 -->
+        <div class="space-y-6">
+          <span class="text-primary text-xs font-bold tracking-[0.2em] uppercase">企业定位</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-dark tracking-tight leading-tight">
+            专注核医学场所建设<br>全生命周期闭环服务
+          </h2>
+          <p class="text-dark/60 leading-relaxed">
+            公司业务覆盖核医学场所建设全生命周期需求，从选址、设计、施工到环评、验收、运维，为客户提供一站式专业服务。
+          </p>
+          <div class="grid grid-cols-2 gap-4 pt-2">
+            <div class="bg-white rounded-2xl p-5 shadow-sm">
+              <i class="fa-solid fa-drafting-compass text-primary text-xl mb-3"></i>
+              <p class="text-sm font-bold text-dark">前期规划</p>
+              <p class="text-xs text-dark/40 mt-1">选址 · 方案 · 施工图</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm">
+              <i class="fa-solid fa-helmet-safety text-primary text-xl mb-3"></i>
+              <p class="text-sm font-bold text-dark">建设落地</p>
+              <p class="text-xs text-dark/40 mt-1">防护施工 · 净化工程</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm">
+              <i class="fa-solid fa-file-shield text-primary text-xl mb-3"></i>
+              <p class="text-sm font-bold text-dark">验收咨询</p>
+              <p class="text-xs text-dark/40 mt-1">环评 · 卫评 · 药监</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm">
+              <i class="fa-solid fa-headset text-primary text-xl mb-3"></i>
+              <p class="text-sm font-bold text-dark">后期运维</p>
+              <p class="text-xs text-dark/40 mt-1">检测 · 7×24 维护</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：数据统计 -->
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-white rounded-3xl p-8 shadow-sm text-center border border-gray-100">
+            <span class="block text-4xl lg:text-5xl font-bold text-primary">10+</span>
+            <span class="text-xs text-dark/40 tracking-wide mt-2 block">年行业经验</span>
+          </div>
+          <div class="bg-white rounded-3xl p-8 shadow-sm text-center border border-gray-100">
+            <span class="block text-4xl lg:text-5xl font-bold text-primary">30+</span>
+            <span class="text-xs text-dark/40 tracking-wide mt-2 block">实施项目</span>
+          </div>
+          <div class="bg-white rounded-3xl p-8 shadow-sm text-center border border-gray-100">
+            <span class="block text-4xl lg:text-5xl font-bold text-primary">100+</span>
+            <span class="text-xs text-dark/40 tracking-wide mt-2 block">技术咨询</span>
+          </div>
+          <div class="bg-white rounded-3xl p-8 shadow-sm text-center border border-gray-100">
+            <span class="block text-4xl lg:text-5xl font-bold text-primary">10+</span>
+            <span class="text-xs text-dark/40 tracking-wide mt-2 block">许可证取证支持</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 业务范围区块（Services & 业务闭环） ========== -->
+  <section id="business" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 标题 -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-primary text-xs font-bold tracking-[0.2em] uppercase">业务范围</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-dark mt-3 mb-4 tracking-tight">覆盖全生命周期需求</h2>
+        <p class="text-dark/50 text-base">从核医学场所选址到后期7×24小时运行维护，满足多元化需求。</p>
+      </div>
+
+      <!-- 业务卡片网格 -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 卡片 1 -->
+        <div
+          class="bg-light rounded-3xl p-8 hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3">选址与方案设计</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">新建、改建项目定制方案，融合功能优化、成本控制与美学设计。</p>
+        </div>
+        <!-- 卡片 2 -->
+        <div
+          class="bg-light rounded-3xl p-8 hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-ruler-combined"></i>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3">专项施工图设计</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">严格遵循行业规范，从选址到布局确保辐射防护、制药用药安全。</p>
+        </div>
+        <!-- 卡片 3 -->
+        <div
+          class="bg-light rounded-3xl p-8 hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-trowel-bricks"></i>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3">项目建设落地</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">辐射防护施工、放射性药物制备净化场所施工，全程专业把控。</p>
+        </div>
+        <!-- 卡片 4 -->
+        <div
+          class="bg-light rounded-3xl p-8 hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3">环评与卫评支持</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">环保验收、控制评价及药监验收技术咨询指导，高效通过审批。</p>
+        </div>
+        <!-- 卡片 5 -->
+        <div
+          class="bg-light rounded-3xl p-8 hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-vial-circle-check"></i>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3">洁净度与防护检测</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">核医学工作场所洁净度检测、辐射防护检测，保障场所安全运行。</p>
+        </div>
+        <!-- 卡片 6 -->
+        <div
+          class="bg-light rounded-3xl p-8 hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-gears"></i>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3">7×24 运行维护</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">后期运行维护与技术支持，快速响应，确保场所稳定运行。</p>
+        </div>
+      </div>
+
+      <!-- 附加服务 -->
+      <div class="mt-12 bg-light rounded-3xl p-8 lg:p-12 border border-gray-100">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="flex items-start gap-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-xl shrink-0">
+              <i class="fa-solid fa-microscope"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-dark mb-1">设备设施研发供应</h3>
+              <p class="text-xs text-dark/50 leading-relaxed">核医学设备设施研发及供应，满足专业需求。</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-xl shrink-0">
+              <i class="fa-solid fa-flask"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-dark mb-1">放射性新药研发支持</h3>
+              <p class="text-xs text-dark/50 leading-relaxed">助力客户攻克技术难点，提升诊疗与生产能力。</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-xl shrink-0">
+              <i class="fa-solid fa-industry"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-dark mb-1">放射性药物生产技术服务</h3>
+              <p class="text-xs text-dark/50 leading-relaxed">提供专业生产技术支撑，保障药物生产质量。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 团队与专业能力区块（图文交替 Zigzag） ========== -->
+  <section class="py-20 lg:py-28 bg-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 第一行：左文右图 -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 lg:mb-32">
+        <div class="space-y-6 order-2 lg:order-1">
+          <span class="text-primary text-xs font-bold tracking-[0.2em] uppercase">专业团队</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-dark tracking-tight leading-tight">
+            技术深度与实战经验兼备的核心团队
+          </h2>
+          <p class="text-dark/60 leading-relaxed">
+            公司配备齐全的专业检测设备与仪器，拥有十年以上知名科研机构、医疗机构及行业企业从业经验的核心团队成员。
+          </p>
+          <ul class="space-y-3 text-sm text-dark/60">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-primary mt-1 text-xs"></i> 工艺设计 ·
+              工程 · 研发专职部门</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-primary mt-1 text-xs"></i> 技术 ·
+              销售 · 售后服务协同</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-primary mt-1 text-xs"></i>
+              确保服务高效协同、响应迅速</li>
+          </ul>
+        </div>
+        <div class="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-xl aspect-4/3 bg-white">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1470&auto=format&fit=crop"
+            alt="核心团队" class="w-full h-full object-cover">
+        </div>
+      </div>
+
+      <!-- 第二行：左图右文 -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="rounded-3xl overflow-hidden shadow-xl aspect-4/3 bg-white order-1">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1470&auto=format&fit=crop"
+            alt="专业检测设备" class="w-full h-full object-cover">
+        </div>
+        <div class="space-y-6 order-2">
+          <span class="text-primary text-xs font-bold tracking-[0.2em] uppercase">设备与资质</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-dark tracking-tight leading-tight">
+            齐全的专业检测设备与仪器
+          </h2>
+          <p class="text-dark/60 leading-relaxed">
+            公司配备齐全的专业检测设备与仪器，为核医学场所建设提供精准的数据支撑与技术保障。
+          </p>
+          <div class="grid grid-cols-2 gap-4 pt-2">
+            <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
+              <i class="fa-solid fa-radiation text-primary text-lg mb-2"></i>
+              <p class="text-xs font-semibold text-dark">辐射防护检测</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
+              <i class="fa-solid fa-wind text-primary text-lg mb-2"></i>
+              <p class="text-xs font-semibold text-dark">洁净度检测</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
+              <i class="fa-solid fa-droplet text-primary text-lg mb-2"></i>
+              <p class="text-xs font-semibold text-dark">废水处理检测</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
+              <i class="fa-solid fa-gauge-high text-primary text-lg mb-2"></i>
+              <p class="text-xs font-semibold text-dark">活度测量</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 企业文化区块 Corporate Culture ========== -->
+  <section class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 标题 -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-primary text-xs font-bold tracking-[0.2em] uppercase">企业文化</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-dark mt-3 mb-4 tracking-tight">核心 · 精心 · 匠心</h2>
+        <p class="text-dark/50 text-base">贝瑞医疗始终秉承“核心、精心、匠心”的企业价值观。</p>
+      </div>
+
+      <!-- 三个文化卡片 -->
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+        <!-- 核心 -->
+        <div
+          class="bg-light rounded-3xl p-8 text-center hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-3xl mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-dark mb-3">核心</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">专注于核医学一站式服务的核心定位，为客户量身定制个性化解决方案。</p>
+        </div>
+        <!-- 精心 -->
+        <div
+          class="bg-light rounded-3xl p-8 text-center hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-3xl mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-dark mb-3">精心</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">致力于为客户提供个性化的精心服务，精准匹配需求，贯穿合作全程。</p>
+        </div>
+        <!-- 匠心 -->
+        <div
+          class="bg-light rounded-3xl p-8 text-center hover:shadow-xl transition duration-300 border border-transparent hover:border-primary/10 group">
+          <div
+            class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-3xl mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-dark mb-3">匠心</h3>
+          <p class="text-sm text-dark/50 leading-relaxed">坚守于项目过程精益求精的匠心管理，严控项目品质，追求卓越。</p>
+        </div>
+      </div>
+
+      <!-- 愿景与理念 -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-linear-to-br from-primary to-[#f09b4a] rounded-3xl p-10 text-white shadow-xl">
+          <i class="fa-solid fa-eye text-3xl mb-4 opacity-80"></i>
+          <h3 class="text-xl font-bold mb-2">企业愿景</h3>
+          <p class="text-white/90 text-sm leading-relaxed">让核医学场所建设服务更专业、更便捷！</p>
+        </div>
+        <div class="bg-light rounded-3xl p-10 border border-gray-100">
+          <i class="fa-solid fa-handshake text-3xl text-primary mb-4"></i>
+          <h3 class="text-xl font-bold text-dark mb-2">经营理念</h3>
+          <p class="text-dark/60 text-sm leading-relaxed">精于专业、恪于安全、诚于客户</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 发展历程 / 里程碑区块 Timeline Section ========== -->
+  <section class="py-20 lg:py-28 bg-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-primary text-xs font-bold tracking-[0.2em] uppercase">发展历程</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-dark mt-3 tracking-tight">深耕核医学领域</h2>
+      </div>
+
+      <!-- 时间轴 -->
+      <div class="relative max-w-4xl mx-auto">
+        <!-- 竖线 -->
+        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 -translate-x-1/2"></div>
+
+        <!-- 节点 1 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6 mb-12">
+          <div
+            class="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white shadow -translate-x-1/2 z-10">
+          </div>
+          <div class="md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0">
+            <span class="text-primary font-bold text-sm">深耕行业</span>
+            <h3 class="text-lg font-bold text-dark mt-1">核心团队组建</h3>
+            <p class="text-sm text-dark/50 mt-2">汇聚十年以上知名科研机构、医疗机构及行业企业从业经验的核心成员。</p>
+          </div>
+          <div class="md:w-1/2 hidden md:block"></div>
+        </div>
+
+        <!-- 节点 2 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6 mb-12">
+          <div
+            class="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white shadow -translate-x-1/2 z-10">
+          </div>
+          <div class="md:w-1/2 hidden md:block"></div>
+          <div class="md:w-1/2 pl-12 md:pl-12">
+            <span class="text-primary font-bold text-sm">全产业链</span>
+            <h3 class="text-lg font-bold text-dark mt-1">业务体系完善</h3>
+            <p class="text-sm text-dark/50 mt-2">覆盖选址、设计、施工、环评、验收、运维全生命周期服务。</p>
+          </div>
+        </div>
+
+        <!-- 节点 3 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6 mb-12">
+          <div
+            class="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white shadow -translate-x-1/2 z-10">
+          </div>
+          <div class="md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0">
+            <span class="text-primary font-bold text-sm">数字孪生</span>
+            <h3 class="text-lg font-bold text-dark mt-1">瑞核V1.0系统研发</h3>
+            <p class="text-sm text-dark/50 mt-2">自主研发数字孪生态势感知平台，实现核医学科智能化管理。</p>
+          </div>
+          <div class="md:w-1/2 hidden md:block"></div>
+        </div>
+
+        <!-- 节点 4 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div
+            class="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white shadow -translate-x-1/2 z-10">
+          </div>
+          <div class="md:w-1/2 hidden md:block"></div>
+          <div class="md:w-1/2 md:pl-12 pl-12">
+            <span class="text-primary font-bold text-sm">持续发展</span>
+            <h3 class="text-lg font-bold text-dark mt-1">服务全国客户</h3>
+            <p class="text-sm text-dark/50 mt-2">已为30+家医疗机构提供核医学场所建设实施服务。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 资质与合作伙伴区块 Partners Section ========== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-primary text-xs font-bold tracking-[0.2em] uppercase">合作伙伴</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-dark mt-3 tracking-tight">信赖之选</h2>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-16 gap-y-8 opacity-60">
+        <i class="fa-solid fa-hospital text-4xl text-dark/30"></i>
+        <i class="fa-solid fa-microscope text-4xl text-dark/30"></i>
+        <i class="fa-solid fa-flask text-4xl text-dark/30"></i>
+        <i class="fa-solid fa-radiation text-4xl text-dark/30"></i>
+        <i class="fa-solid fa-dna text-4xl text-dark/30"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA 行动号召区块 ========== -->
+  <section class="py-16 lg:py-20 bg-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="bg-linear-to-r from-primary to-[#f09b4a] rounded-3xl p-10 lg:p-14 text-center text-white shadow-2xl shadow-primary/20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/4"></div>
+        <div class="relative z-10">
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">携手贝瑞，共筑医疗健康新蓝图</h2>
+          <p class="text-white/80 max-w-2xl mx-auto mb-8 text-sm sm:text-base">期待与您“核”作，为您提供核医学场所建设一站式专业服务。</p>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a href="contact.html"
+              class="bg-white text-primary font-semibold px-8 py-3.5 rounded-full shadow-lg hover:bg-gray-50 transition text-sm flex items-center gap-2">
+              <i class="fa-regular fa-paper-plane"></i> 免费咨询
+            </a>
+            <a href="tel:18503878846"
+              class="bg-transparent border border-white/40 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 transition text-sm flex items-center gap-2">
+              <i class="fa-solid fa-phone"></i> 18503878846
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 页脚区块 Footer Section（与首页一致） ========== -->
+  <footer class="bg-dark text-white/70 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <!-- 品牌列 -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
+              <i class="fa-solid fa-radiation text-sm"></i>
+            </div>
+            <span class="text-white font-bold text-lg tracking-tight">贝瑞医疗</span>
+          </div>
+          <p class="text-sm leading-relaxed text-white/50">专注核医学场所建设一站式服务，提供从规划到运维的全生命周期解决方案。</p>
+          <div class="flex gap-3 pt-2">
+            <a href="contact.html"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition"><i
+                class="fa-brands fa-weixin text-sm"></i></a>
+            <a href="mailto:530051528@qq.com"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition"><i
+                class="fa-regular fa-envelope text-sm"></i></a>
+            <a href="contact.html"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition"><i
+                class="fa-solid fa-globe text-sm"></i></a>
+          </div>
+        </div>
+        <!-- 快速链接 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider mb-5">快速导航</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="industry.html" class="hover:text-primary transition">行业背景</a></li>
+            <li><a href="company.html" class="hover:text-primary transition">企业简介</a></li>
+            <li><a href="services.html" class="hover:text-primary transition">服务内容</a></li>
+            <li><a href="advantages.html" class="hover:text-primary transition">专业优势</a></li>
+            <li><a href="cases.html" class="hover:text-primary transition">业绩介绍</a></li>
+          </ul>
+        </div>
+        <!-- 服务支持 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider mb-5">服务支持</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="services.html#design" class="hover:text-primary transition">设计篇</a></li>
+            <li><a href="services.html#construction" class="hover:text-primary transition">施工篇</a></li>
+            <li><a href="services.html#equipment" class="hover:text-primary transition">设备篇</a></li>
+            <li><a href="advantages.html#digital" class="hover:text-primary transition">数字孪生</a></li>
+            <li><a href="contact.html#faq" class="hover:text-primary transition">常见问题</a></li>
+          </ul>
+        </div>
+        <!-- 联系方式 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider mb-5">联系我们</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-phone text-primary mt-0.5 text-xs"></i> 18503878846
+              / 13215991477</li>
+            <li class="flex items-start gap-3"><i class="fa-regular fa-envelope text-primary mt-0.5 text-xs"></i>
+              530051528@qq.com</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-primary mt-0.5 text-xs"></i>
+              郑州市高新技术产业开发区瑞达路睿达广场1栋14层</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-globe text-primary mt-0.5 text-xs"></i>
+              www.berrymedical.com.cn</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/40 gap-4">
+        <p>© 2025 贝瑞医疗科技（郑州）有限公司 · Berry Medical Technology (Zhengzhou) Co., Ltd. 保留所有权利。</p>
+        <div class="flex gap-6">
+          <a href="privacy.html" class="hover:text-primary transition">隐私政策</a>
+          <a href="terms.html" class="hover:text-primary transition">服务条款</a>
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener"
+            class="hover:text-primary transition">备案号</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== 悬浮操作区块 Floating Action Section ========== -->
+  <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+    <a href="contact.html"
+      class="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-dark/60 hover:text-primary hover:shadow-xl transition">
+      <i class="fa-regular fa-comment-dots text-lg"></i>
+    </a>
+    <a href="#" id="backTop"
+      class="w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-primary/90 hover:shadow-xl transition">
+      <i class="fa-solid fa-arrow-up text-lg"></i>
+    </a>
+  </div>
+
+  <script>
+    // 移动端菜单展开 / 收起
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', function () {
+      mobileMenu.classList.toggle('hidden');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+    // 回到顶部（平滑滚动）
+    document.getElementById('backTop').addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+
+</html>

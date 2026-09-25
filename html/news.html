@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新闻动态 · 贝瑞医疗 · 核医学场所建设一站式服务</title>
+  <meta name="description" content="贝瑞医疗新闻动态，了解核医学场所建设行业资讯、公司新闻与技术分享。">
+  <!-- TailwindCSS 4 CDN（与其余页面一致） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 免费图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#E37722',
+            dark: '#3F3B3A',
+            light: '#F6F7F7',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-white font-sans text-dark antialiased">
+
+  <!-- ========== 全局导航栏 Navbar Section ========== -->
+  <header class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
+          <div
+            class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-bold text-xl shadow-md">
+            <i class="fa-solid fa-radiation text-lg"></i>
+          </div>
+          <div class="leading-tight">
+            <span class="block text-lg font-bold tracking-tight text-dark">贝瑞医疗</span>
+            <span class="block text-[10px] text-gray-400 tracking-wider">BERRY MEDICAL</span>
+          </div>
+        </a>
+
+        <!-- 桌面导航菜单（当前页高亮新闻动态） -->
+        <nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-dark/80">
+          <a href="index.html" class="hover:text-primary transition">首页</a>
+          <a href="industry.html" class="hover:text-primary transition">行业背景</a>
+          <a href="company.html" class="hover:text-primary transition">企业简介</a>
+          <a href="services.html" class="hover:text-primary transition">服务内容</a>
+          <a href="advantages.html" class="hover:text-primary transition">专业优势</a>
+          <a href="cases.html" class="hover:text-primary transition">业绩介绍</a>
+          <a href="news.html" class="text-primary border-b-2 border-primary pb-1 transition">新闻动态</a>
+          <a href="contact.html" class="hover:text-primary transition">联系我们</a>
+        </nav>
+
+        <!-- 右侧操作区 -->
+        <div class="flex items-center gap-3">
+          <button class="hidden lg:block text-dark/60 hover:text-primary transition">
+            <i class="fa-solid fa-magnifying-glass text-lg"></i>
+          </button>
+          <a href="contact.html"
+            class="hidden sm:inline-flex items-center gap-2 bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md shadow-primary/20 hover:bg-primary/90 transition">
+            <i class="fa-regular fa-comment-dots"></i> 咨询方案
+          </a>
+          <!-- 移动端菜单按钮 -->
+          <button id="menuBtn" class="md:hidden text-dark/70 text-2xl" aria-label="打开菜单">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 移动端下拉菜单 -->
+    <nav id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white">
+      <div class="px-4 py-3 space-y-1 text-sm font-medium text-dark/80">
+        <a href="index.html" class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">首页</a>
+        <a href="industry.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">行业背景</a>
+        <a href="company.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">企业简介</a>
+        <a href="services.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">服务内容</a>
+        <a href="advantages.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">专业优势</a>
+        <a href="cases.html" class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">业绩介绍</a>
+        <a href="news.html" class="block px-3 py-2.5 rounded-lg bg-light text-primary font-semibold transition">新闻动态</a>
+        <a href="contact.html"
+          class="block px-3 py-2.5 rounded-lg hover:bg-light hover:text-primary transition">联系我们</a>
+        <a href="contact.html" class="block px-3 py-2.5 rounded-lg bg-primary text-white text-center mt-2">咨询方案</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 固定导航占位 -->
+  <div class="h-20"></div>
+
+  <!-- ========== 首屏 / 标题区块 Hero（使用 Unsplash 图片作为背景） ========== -->
+  <section class="relative overflow-hidden">
+    <!-- 背景图 -->
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop"
+      alt="新闻动态背景" class="absolute inset-0 w-full h-full object-cover" loading="eager">
+    <!-- 深色渐变遮罩，保证文字可读性 -->
+    <div class="absolute inset-0 bg-black/40"></div>
+    <!-- 内容 -->
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-3xl">
+        <div
+          class="inline-flex items-center gap-2 bg-primary/20 backdrop-blur text-white text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide border border-primary/30">
+          <i class="fa-regular fa-newspaper text-[10px]"></i> NEWS & INSIGHTS
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.15] tracking-tight mt-5">
+          新闻动态
+        </h1>
+        <p class="text-base text-white/70 leading-relaxed mt-4 max-w-lg">
+          了解贝瑞医疗最新动态、核医学场所建设行业资讯与技术分享，掌握领域前沿趋势。
+        </p>
+        <!-- 数据/标签装饰 -->
+        <div class="flex flex-wrap items-center gap-6 mt-8 pt-6 border-t border-white/10">
+          <div class="flex items-center gap-2 text-white/60 text-sm">
+            <i class="fa-regular fa-clock text-primary"></i> 持续更新
+          </div>
+          <div class="flex items-center gap-2 text-white/60 text-sm">
+            <i class="fa-solid fa-layer-group text-primary"></i> 4 大分类
+          </div>
+          <div class="flex items-center gap-2 text-white/60 text-sm">
+            <i class="fa-solid fa-newspaper text-primary"></i> 100+ 资讯
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 新闻分类导航 ========== -->
+  <section class="py-8 bg-light border-b border-gray-100/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        <span class="text-xs font-semibold text-dark/40 tracking-wider mr-1">分类</span>
+        <a href="#" class="bg-primary text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm">全部</a>
+        <a href="#"
+          class="bg-white text-dark/70 text-xs font-medium px-4 py-2 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">公司新闻</a>
+        <a href="#"
+          class="bg-white text-dark/70 text-xs font-medium px-4 py-2 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">行业资讯</a>
+        <a href="#"
+          class="bg-white text-dark/70 text-xs font-medium px-4 py-2 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">技术分享</a>
+        <a href="#"
+          class="bg-white text-dark/70 text-xs font-medium px-4 py-2 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">政策法规</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 新闻列表 + 侧边栏 ========== -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-[1fr_320px] gap-10 lg:gap-14 items-start">
+
+        <!-- 左侧：新闻列表 -->
+        <div class="space-y-8">
+
+          <!-- 置顶/精选新闻（大图卡片） -->
+          <article
+            class="group rounded-3xl overflow-hidden bg-light shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+            <div class="grid md:grid-cols-2">
+              <div class="aspect-4/3 md:aspect-auto md:h-full overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1470&auto=format&fit=crop"
+                  alt="核医学场所建设新进展" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </div>
+              <div class="p-6 sm:p-8 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">公司新闻</span>
+                  <span class="text-xs text-dark/40"><i class="fa-regular fa-calendar mr-1"></i>2026-09-18</span>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-bold text-dark leading-snug group-hover:text-primary transition">
+                  贝瑞医疗签约某三甲医院核医学科整体改造项目
+                </h2>
+                <p class="text-sm text-dark/50 leading-relaxed mt-3 line-clamp-3">
+                  近日，贝瑞医疗与华中地区某三甲医院正式签约，将为其核医学科提供从选址规划、辐射防护施工到环评验收的全生命周期一站式服务。项目预计工期6个月，建成后将显著提升该院核医学诊疗能力。
+                </p>
+                <div class="flex items-center gap-2 mt-5">
+                  <a href="#"
+                    class="text-primary text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all">
+                    阅读全文 <i class="fa-solid fa-arrow-right text-xs"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 常规新闻列表（图文交错卡片） -->
+          <div class="grid sm:grid-cols-2 gap-6">
+
+            <!-- 新闻卡片 1 -->
+            <article
+              class="group rounded-3xl overflow-hidden bg-light shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
+              <div class="aspect-16/10 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1470&auto=format&fit=crop"
+                  alt="瑞核V1.0系统升级" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">技术分享</span>
+                  <span class="text-xs text-dark/40"><i class="fa-regular fa-calendar mr-1"></i>2026-09-10</span>
+                </div>
+                <h3 class="text-lg font-bold text-dark leading-snug group-hover:text-primary transition">
+                  瑞核V1.0数字孪生平台完成重大版本升级
+                </h3>
+                <p class="text-sm text-dark/50 leading-relaxed mt-2 line-clamp-2 flex-1">
+                  新版本新增设备预测性维护与辐射剂量智能预警模块，进一步提升核医学科智能化管理水平。
+                </p>
+                <a href="#"
+                  class="text-primary text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all mt-4">
+                  阅读全文 <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- 新闻卡片 2 -->
+            <article
+              class="group rounded-3xl overflow-hidden bg-light shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
+              <div class="aspect-16/10 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=1470&auto=format&fit=crop"
+                  alt="放射性药物制备场所" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">行业资讯</span>
+                  <span class="text-xs text-dark/40"><i class="fa-regular fa-calendar mr-1"></i>2026-09-03</span>
+                </div>
+                <h3 class="text-lg font-bold text-dark leading-snug group-hover:text-primary transition">
+                  放射性药物制备场所GMP验收要点解析
+                </h3>
+                <p class="text-sm text-dark/50 leading-relaxed mt-2 line-clamp-2 flex-1">
+                  结合最新药监政策，梳理放射性药物制备净化场所的验收标准与常见问题，助力高效通过审批。
+                </p>
+                <a href="#"
+                  class="text-primary text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all mt-4">
+                  阅读全文 <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- 新闻卡片 3 -->
+            <article
+              class="group rounded-3xl overflow-hidden bg-light shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
+              <div class="aspect-16/10 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1470&auto=format&fit=crop"
+                  alt="场地改造项目" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">公司新闻</span>
+                  <span class="text-xs text-dark/40"><i class="fa-regular fa-calendar mr-1"></i>2026-08-25</span>
+                </div>
+                <h3 class="text-lg font-bold text-dark leading-snug group-hover:text-primary transition">
+                  有限空间核医学场所改造项目顺利通过验收
+                </h3>
+                <p class="text-sm text-dark/50 leading-relaxed mt-2 line-clamp-2 flex-1">
+                  贝瑞医疗凭借创新布局方案，在不足300㎡空间内完成核医学科整体改造，一次性通过环评及卫评验收。
+                </p>
+                <a href="#"
+                  class="text-primary text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all mt-4">
+                  阅读全文 <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- 新闻卡片 4 -->
+            <article
+              class="group rounded-3xl overflow-hidden bg-light shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
+              <div class="aspect-16/10 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1470&auto=format&fit=crop"
+                  alt="核医学政策" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">政策法规</span>
+                  <span class="text-xs text-dark/40"><i class="fa-regular fa-calendar mr-1"></i>2026-08-15</span>
+                </div>
+                <h3 class="text-lg font-bold text-dark leading-snug group-hover:text-primary transition">
+                  核医学诊疗项目环评新规解读与应对策略
+                </h3>
+                <p class="text-sm text-dark/50 leading-relaxed mt-2 line-clamp-2 flex-1">
+                  针对最新发布的核技术应用项目环评要求，分析对核医学场所建设的影响及合规建议。
+                </p>
+                <a href="#"
+                  class="text-primary text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all mt-4">
+                  阅读全文 <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- 新闻卡片 5 -->
+            <article
+              class="group rounded-3xl overflow-hidden bg-light shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
+              <div class="aspect-16/10 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1470&auto=format&fit=crop"
+                  alt="设备供应" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">技术分享</span>
+                  <span class="text-xs text-dark/40"><i class="fa-regular fa-calendar mr-1"></i>2026-08-08</span>
+                </div>
+                <h3 class="text-lg font-bold text-dark leading-snug group-hover:text-primary transition">
+                  核医学防护设备选型指南：手套箱与热室篇
+                </h3>
+                <p class="text-sm text-dark/50 leading-relaxed mt-2 line-clamp-2 flex-1">
+                  从防护性能、洁净等级到操作便捷性，全面对比分析合成热室与分装热室的选型要点。
+                </p>
+                <a href="#"
+                  class="text-primary text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all mt-4">
+                  阅读全文 <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- 新闻卡片 6 -->
+            <article
+              class="group rounded-3xl overflow-hidden bg-light shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
+              <div class="aspect-16/10 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1470&auto=format&fit=crop"
+                  alt="核医学科建设" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">公司新闻</span>
+                  <span class="text-xs text-dark/40"><i class="fa-regular fa-calendar mr-1"></i>2026-07-28</span>
+                </div>
+                <h3 class="text-lg font-bold text-dark leading-snug group-hover:text-primary transition">
+                  贝瑞医疗参加2026全国核医学学术年会
+                </h3>
+                <p class="text-sm text-dark/50 leading-relaxed mt-2 line-clamp-2 flex-1">
+                  公司技术团队受邀参会，并在“核医学场所建设与防护”分论坛作主题报告，分享项目实践经验。
+                </p>
+                <a href="#"
+                  class="text-primary text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all mt-4">
+                  阅读全文 <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- 分页 -->
+          <div class="flex items-center justify-center gap-2 pt-8">
+            <a href="#"
+              class="w-10 h-10 rounded-full bg-light border border-gray-200 flex items-center justify-center text-dark/50 hover:border-primary/40 hover:text-primary transition">
+              <i class="fa-solid fa-chevron-left text-xs"></i>
+            </a>
+            <a href="#"
+              class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold shadow-md shadow-primary/20">1</a>
+            <a href="#"
+              class="w-10 h-10 rounded-full bg-light border border-gray-200 flex items-center justify-center text-sm font-medium text-dark/60 hover:border-primary/40 hover:text-primary transition">2</a>
+            <a href="#"
+              class="w-10 h-10 rounded-full bg-light border border-gray-200 flex items-center justify-center text-sm font-medium text-dark/60 hover:border-primary/40 hover:text-primary transition">3</a>
+            <span class="w-10 h-10 flex items-center justify-center text-dark/30 text-sm">…</span>
+            <a href="#"
+              class="w-10 h-10 rounded-full bg-light border border-gray-200 flex items-center justify-center text-dark/50 hover:border-primary/40 hover:text-primary transition">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 右侧：侧边栏 -->
+        <aside class="space-y-8 lg:sticky lg:top-28">
+
+          <!-- 搜索 -->
+          <div class="bg-light rounded-3xl p-6 border border-gray-100">
+            <h4 class="text-sm font-bold text-dark mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-magnifying-glass text-primary text-xs"></i> 搜索新闻
+            </h4>
+            <div class="relative">
+              <input type="text" placeholder="输入关键词…"
+                class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-11 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition">
+              <button class="absolute right-3 top-1/2 -translate-y-1/2 text-dark/40 hover:text-primary transition">
+                <i class="fa-solid fa-arrow-right text-sm"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 热门文章 -->
+          <div class="bg-light rounded-3xl p-6 border border-gray-100">
+            <h4 class="text-sm font-bold text-dark mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-fire text-primary text-xs"></i> 热门文章
+            </h4>
+            <ul class="space-y-4">
+              <li>
+                <a href="#" class="group flex items-start gap-3">
+                  <span
+                    class="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">1</span>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-dark leading-snug group-hover:text-primary transition line-clamp-2">
+                      核医学场所辐射防护施工关键控制点</p>
+                    <p class="text-[11px] text-dark/40 mt-1">2026-09-05</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="group flex items-start gap-3">
+                  <span
+                    class="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">2</span>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-dark leading-snug group-hover:text-primary transition line-clamp-2">
+                      PET/CT中心建设场地要求与布局建议</p>
+                    <p class="text-[11px] text-dark/40 mt-1">2026-08-30</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="group flex items-start gap-3">
+                  <span
+                    class="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">3</span>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-dark leading-snug group-hover:text-primary transition line-clamp-2">
+                      放射性废水衰变池设计要点与常见问题</p>
+                    <p class="text-[11px] text-dark/40 mt-1">2026-08-20</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="group flex items-start gap-3">
+                  <span
+                    class="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">4</span>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-dark leading-snug group-hover:text-primary transition line-clamp-2">
+                      数字孪生在核医学科运维中的应用实践</p>
+                    <p class="text-[11px] text-dark/40 mt-1">2026-08-12</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 标签云 -->
+          <div class="bg-light rounded-3xl p-6 border border-gray-100">
+            <h4 class="text-sm font-bold text-dark mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-tags text-primary text-xs"></i> 热门标签
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <a href="#"
+                class="bg-white text-dark/60 text-xs px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">核医学科</a>
+              <a href="#"
+                class="bg-white text-dark/60 text-xs px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">辐射防护</a>
+              <a href="#"
+                class="bg-white text-dark/60 text-xs px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">环评验收</a>
+              <a href="#"
+                class="bg-white text-dark/60 text-xs px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">GMP</a>
+              <a href="#"
+                class="bg-white text-dark/60 text-xs px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">数字孪生</a>
+              <a href="#"
+                class="bg-white text-dark/60 text-xs px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">设备选型</a>
+              <a href="#"
+                class="bg-white text-dark/60 text-xs px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">场地改造</a>
+              <a href="#"
+                class="bg-white text-dark/60 text-xs px-3 py-1.5 rounded-full border border-gray-200 hover:border-primary/40 hover:text-primary transition">放射性药物</a>
+            </div>
+          </div>
+
+          <!-- 订阅卡片 -->
+          <div class="bg-linear-to-br from-primary to-[#f09b4a] rounded-3xl p-6 text-white shadow-xl">
+            <i class="fa-regular fa-envelope-open text-2xl mb-3 opacity-80"></i>
+            <h4 class="text-base font-bold mb-1">订阅行业资讯</h4>
+            <p class="text-xs text-white/80 leading-relaxed mb-4">获取核医学场所建设最新政策、技术与案例。</p>
+            <a href="contact.html"
+              class="bg-white text-primary text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-2 hover:bg-gray-50 transition">
+              <i class="fa-regular fa-paper-plane"></i> 立即订阅
+            </a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA 行动号召区块 ========== -->
+  <section class="py-16 lg:py-20 bg-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="bg-linear-to-r from-primary to-[#f09b4a] rounded-3xl p-10 lg:p-14 text-center text-white shadow-2xl shadow-primary/20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/4"></div>
+        <div class="relative z-10">
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">开启您的核医学场所建设之旅</h2>
+          <p class="text-white/80 max-w-2xl mx-auto mb-8 text-sm sm:text-base">专业团队为您提供从选址到运维的一站式服务，立即咨询获取定制方案。</p>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a href="contact.html"
+              class="bg-white text-primary font-semibold px-8 py-3.5 rounded-full shadow-lg hover:bg-gray-50 transition text-sm flex items-center gap-2">
+              <i class="fa-regular fa-paper-plane"></i> 免费咨询
+            </a>
+            <a href="tel:18503878846"
+              class="bg-transparent border border-white/40 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 transition text-sm flex items-center gap-2">
+              <i class="fa-solid fa-phone"></i> 18503878846
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 页脚区块 ========== -->
+  <footer class="bg-dark text-white/70 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <!-- 品牌列 -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
+              <i class="fa-solid fa-radiation text-sm"></i>
+            </div>
+            <span class="text-white font-bold text-lg tracking-tight">贝瑞医疗</span>
+          </div>
+          <p class="text-sm leading-relaxed text-white/50">专注核医学场所建设一站式服务，提供从规划到运维的全生命周期解决方案。</p>
+          <div class="flex gap-3 pt-2">
+            <a href="contact.html"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition"><i
+                class="fa-brands fa-weixin text-sm"></i></a>
+            <a href="mailto:530051528@qq.com"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition"><i
+                class="fa-regular fa-envelope text-sm"></i></a>
+            <a href="contact.html"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition"><i
+                class="fa-solid fa-globe text-sm"></i></a>
+          </div>
+        </div>
+        <!-- 快速链接 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider mb-5">快速导航</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="industry.html" class="hover:text-primary transition">行业背景</a></li>
+            <li><a href="company.html" class="hover:text-primary transition">企业简介</a></li>
+            <li><a href="services.html" class="hover:text-primary transition">服务内容</a></li>
+            <li><a href="advantages.html" class="hover:text-primary transition">专业优势</a></li>
+            <li><a href="cases.html" class="hover:text-primary transition">业绩介绍</a></li>
+            <li><a href="news.html" class="hover:text-primary transition">新闻动态</a></li>
+          </ul>
+        </div>
+        <!-- 服务支持 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider mb-5">服务支持</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="services.html#design" class="hover:text-primary transition">设计篇</a></li>
+            <li><a href="services.html#construction" class="hover:text-primary transition">施工篇</a></li>
+            <li><a href="services.html#equipment" class="hover:text-primary transition">设备篇</a></li>
+            <li><a href="advantages.html#digital" class="hover:text-primary transition">数字孪生</a></li>
+            <li><a href="contact.html#faq" class="hover:text-primary transition">常见问题</a></li>
+          </ul>
+        </div>
+        <!-- 联系方式 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm tracking-wider mb-5">联系我们</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-phone text-primary mt-0.5 text-xs"></i> 18503878846
+              / 13215991477</li>
+            <li class="flex items-start gap-3"><i class="fa-regular fa-envelope text-primary mt-0.5 text-xs"></i>
+              530051528@qq.com</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-primary mt-0.5 text-xs"></i>
+              郑州市高新技术产业开发区瑞达路睿达广场1栋14层</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-globe text-primary mt-0.5 text-xs"></i>
+              www.berrymedical.com.cn</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/40 gap-4">
+        <p>© 2025 贝瑞医疗科技（郑州）有限公司 · Berry Medical Technology (Zhengzhou) Co., Ltd. 保留所有权利。</p>
+        <div class="flex gap-6">
+          <a href="privacy.html" class="hover:text-primary transition">隐私政策</a>
+          <a href="terms.html" class="hover:text-primary transition">服务条款</a>
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener"
+            class="hover:text-primary transition">备案号</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== 悬浮操作区块 ========== -->
+  <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+    <a href="contact.html"
+      class="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-dark/60 hover:text-primary hover:shadow-xl transition">
+      <i class="fa-regular fa-comment-dots text-lg"></i>
+    </a>
+    <a href="#" id="backTop"
+      class="w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-primary/90 hover:shadow-xl transition">
+      <i class="fa-solid fa-arrow-up text-lg"></i>
+    </a>
+  </div>
+
+  <script>
+    // 移动端菜单展开 / 收起
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', function () {
+      mobileMenu.classList.toggle('hidden');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+    // 回到顶部（平滑滚动）
+    document.getElementById('backTop').addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+
+</html>

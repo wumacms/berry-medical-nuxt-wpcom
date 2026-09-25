@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+# 赋予部署 GitHub Pages 所需的权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 保证同一时间只有一个部署任务在运行
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Nuxt
+        run: pnpm nuxt build --preset github_pages
+        env:
+          # 自动自适应子路径（例如 /berry-medical-nuxt-wpcom/ 或 /berry-medical/）或根域名（自定义域名时为 /）
+          NUXT_APP_BASE_URL: ${{ steps.pages.outputs.base_path }}/
+
+      - name: Ensure .nojekyll exists
+        run: touch .output/public/.nojekyll
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .output/public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
