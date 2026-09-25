@@ -50,14 +50,17 @@ const contactForm = reactive({
 const isSubmitting = ref(false);
 const submitSuccess = ref(false);
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (!contactForm.name || !contactForm.phone) {
     alert("请填写您的名字与联系电话");
     return;
   }
   isSubmitting.value = true;
-  setTimeout(() => {
-    isSubmitting.value = false;
+  try {
+    await $fetch("/api/contact", {
+      method: "POST",
+      body: { ...contactForm },
+    });
     submitSuccess.value = true;
     contactForm.name = "";
     contactForm.phone = "";
@@ -65,7 +68,11 @@ const handleSubmit = () => {
     setTimeout(() => {
       submitSuccess.value = false;
     }, 4500);
-  }, 600);
+  } catch (error: any) {
+    alert(error?.data?.statusMessage || "提交失败，请稍后重试");
+  } finally {
+    isSubmitting.value = false;
+  }
 };
 
 // FAQ items

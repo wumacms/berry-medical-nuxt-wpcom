@@ -2,11 +2,21 @@ export const useScroll = (threshold = 300) => {
   const isScrolled = ref(false);
   const showBackToTop = ref(false);
 
-  const handleScroll = () => {
+  let ticking = false;
+
+  const updateScrollState = () => {
     if (typeof window === "undefined") return;
     const scrollY = window.scrollY || document.documentElement.scrollTop;
     isScrolled.value = scrollY > 20;
     showBackToTop.value = scrollY > threshold;
+    ticking = false;
+  };
+
+  const handleScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateScrollState);
+      ticking = true;
+    }
   };
 
   const scrollToTop = () => {
@@ -18,7 +28,7 @@ export const useScroll = (threshold = 300) => {
   };
 
   onMounted(() => {
-    handleScroll();
+    updateScrollState();
     window.addEventListener("scroll", handleScroll, { passive: true });
   });
 

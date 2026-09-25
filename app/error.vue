@@ -95,7 +95,7 @@ const handleError = () => {
 
     <!-- 简易页脚 -->
     <footer class="border-t border-gray-100 py-6 text-center text-xs text-dark/40">
-      <p>© 2025 贝瑞医疗科技（郑州）有限公司 · 版权所有</p>
+      <p>© {{ new Date().getFullYear() }} 贝瑞医疗科技（郑州）有限公司 · 版权所有</p>
     </footer>
   </div>
 </template>

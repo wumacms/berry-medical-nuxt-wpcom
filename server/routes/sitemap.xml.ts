@@ -1,4 +1,5 @@
 import { newsList } from "~/data/news";
+import { caseList } from "~/data/cases";
 
 export default defineEventHandler((event) => {
   const host = "https://www.berrymedical.com.cn";
@@ -9,7 +10,7 @@ export default defineEventHandler((event) => {
     { url: "/services", changefreq: "monthly", priority: "0.9", lastmod: now },
     { url: "/cases", changefreq: "monthly", priority: "0.9", lastmod: now },
     { url: "/advantages", changefreq: "monthly", priority: "0.8", lastmod: now },
-    { url: "/company", changefreq: "monthly", priority: "0.8", lastmod: now },
+    { url: "/about", changefreq: "monthly", priority: "0.8", lastmod: now },
     { url: "/industry", changefreq: "monthly", priority: "0.7", lastmod: now },
     { url: "/news", changefreq: "daily", priority: "0.8", lastmod: now },
     { url: "/contact", changefreq: "monthly", priority: "0.8", lastmod: now },
@@ -23,7 +24,14 @@ export default defineEventHandler((event) => {
     lastmod: item.date || now,
   }));
 
-  const allPages = [...staticPages, ...dynamicNewsPages];
+  const dynamicCasePages = caseList.map((item) => ({
+    url: `/cases/${item.id}`,
+    changefreq: "monthly",
+    priority: "0.7",
+    lastmod: now,
+  }));
+
+  const allPages = [...staticPages, ...dynamicNewsPages, ...dynamicCasePages];
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

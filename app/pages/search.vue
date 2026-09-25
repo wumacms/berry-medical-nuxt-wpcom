@@ -99,12 +99,22 @@ const paginatedResults = computed(() => {
   return allResults.value.slice(start, start + pageSize);
 });
 
-// Highlight keywords helper
+// HTML entity escaping to prevent XSS
+const escapeHtml = (str: string) =>
+  str.replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[m]!));
+
+// Regex special character escaping to prevent ReDoS
+const escapeRegExp = (str: string) =>
+  str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+// Highlight keywords helper (XSS-safe)
 const highlightKeyword = (text: string) => {
   const kw = currentSearchText.value.trim();
-  if (!kw) return text;
-  const regex = new RegExp(`(${kw})`, "gi");
-  return text.replace(regex, `<mark class="bg-yellow-200 text-gray-900 rounded-xs px-0.5">$1</mark>`);
+  if (!kw) return escapeHtml(text);
+  const safeText = escapeHtml(text);
+  const safeKw = escapeRegExp(escapeHtml(kw));
+  const regex = new RegExp(`(${safeKw})`, "gi");
+  return safeText.replace(regex, `<mark class="bg-yellow-200 text-gray-900 rounded-xs px-0.5">$1</mark>`);
 };
 
 useSeoMeta({

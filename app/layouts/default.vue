@@ -5,7 +5,7 @@ import FloatingTools from "~/components/layout/FloatingTools.vue";
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-white text-dark font-sans selection:bg-primary/20 selection:text-primary">
+  <div class="min-h-screen flex flex-col bg-white text-dark font-sans selection:bg-primary/20 selection:text-primary pb-14 lg:pb-0">
     <!-- 全局导航栏 -->
     <TheNavbar />
 

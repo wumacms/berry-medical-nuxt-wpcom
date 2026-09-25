@@ -46,7 +46,7 @@ const slides = [
   },
 ];
 
-let slideTimer: any = null;
+let slideTimer: ReturnType<typeof setInterval> | null = null;
 onMounted(() => {
   slideTimer = setInterval(() => {
     activeSlide.value = (activeSlide.value + 1) % slides.length;
@@ -88,14 +88,17 @@ const contactForm = reactive({
 const formSubmitted = ref(false);
 const submitting = ref(false);
 
-const handleContactSubmit = () => {
+const handleContactSubmit = async () => {
   if (!contactForm.name || !contactForm.phone) {
     alert("请填写您的姓名和联系电话");
     return;
   }
   submitting.value = true;
-  setTimeout(() => {
-    submitting.value = false;
+  try {
+    await $fetch("/api/contact", {
+      method: "POST",
+      body: { ...contactForm },
+    });
     formSubmitted.value = true;
     contactForm.name = "";
     contactForm.phone = "";
@@ -103,7 +106,11 @@ const handleContactSubmit = () => {
     setTimeout(() => {
       formSubmitted.value = false;
     }, 4000);
-  }, 600);
+  } catch (error: any) {
+    alert(error?.data?.statusMessage || "提交失败，请稍后重试");
+  } finally {
+    submitting.value = false;
+  }
 };
 </script>
 
