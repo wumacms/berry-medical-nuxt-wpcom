@@ -91,6 +91,7 @@ v4** 原生极速引擎开发，专为核医学场所建设领域打造的企业
 - **核心框架**：[Nuxt 4](https://nuxt.com/) (`^4.5.2`) +
   [Vue 3](https://vuejs.org/) (`^3.5.43`) - 现代 Composition API 驱动
 - **构建工具**：[Vite 8](https://vite.dev/) - 毫秒级冷启动与 HMR 热更新
+- **轮播引擎**：[Embla Carousel](https://www.embla-carousel.com/) (`embla-carousel-vue` + `embla-carousel-autoplay`) - 轻量物理级无缝轮播引擎
 - **样式方案**：[Tailwind CSS v4](https://tailwindcss.com/) (`@tailwindcss/vite`
   原生驱动) + `@theme` 品牌自研色系与设计规范
 - **图标系统**：[Font Awesome Free](https://fontawesome.com/) (`^7.3.1`)
@@ -123,7 +124,8 @@ berry-medical-nuxt-wpcom/
 ├── docs/                       # 项目架构与优化报告文档
 │   ├── 2026-09-25-01/          # 源码深度优化分析报告
 │   ├── 2026-09-25-02/          # 原生 Tailwind CSS 改造方案与结果报告
-│   └── 2026-09-25-03/          # 贝瑞医疗官网数据配置化改造方案与总结报告
+│   ├── 2026-09-25-03/          # 贝瑞医疗官网数据配置化改造方案与总结报告
+│   └── 2026-09-25-04/          # 首页轮播图迁移至 Embla Carousel 改造报告
 ├── public/                     # 公共静态资产 (favicon, logo, 二维码等)
 ├── server/                     # 服务端 Nitro 模块
 │   └── api/                    # 后端 API 接口 (/api/contact 留言提交)
