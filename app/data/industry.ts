@@ -49,3 +49,37 @@ export const industryDrivers: IndustryItem[] = [
     desc: "诊断与治疗协同发展，推动核医学向更细分、更高疗效方向演进。",
   },
 ];
+
+export interface IndustryPageData {
+  banner: {
+    title: string;
+    description: string;
+  };
+  sectionHeaders: {
+    challenges: {
+      title: string;
+      subtitle: string;
+    };
+    drivers: {
+      title: string;
+      subtitle: string;
+    };
+  };
+}
+
+export const industryPageData: IndustryPageData = {
+  banner: {
+    title: "行业背景",
+    description: "核医学迎来精准医疗新时代，政策与临床需求双轮驱动科室场所高标规范化建设",
+  },
+  sectionHeaders: {
+    challenges: {
+      title: "全球健康挑战与核医学价值",
+      subtitle: "核医学在疾病早期诊断、精准分期、疗效评估及靶向治疗全流程中展现核心价值",
+    },
+    drivers: {
+      title: "核医学发展的核心驱动力",
+      subtitle: "先进成像技术与放射性药物创新研发加速临床落地",
+    },
+  },
+};

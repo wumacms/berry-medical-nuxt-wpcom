@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { industryChallenges, industryDrivers } from "~/data/industry";
+import {
+  industryChallenges,
+  industryDrivers,
+  industryPageData,
+} from "~/data/industry";
 
 const { setCanonical, SITE_URL } = useJsonLd();
 setCanonical("/industry");
@@ -17,15 +21,18 @@ useSeoMeta({
   <div class="page-industry">
     <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
     <PageBanner
-      title="行业背景"
-      description="核医学迎来精准医疗新时代，政策与临床需求双轮驱动科室场所高标规范化建设"
-      :breadcrumbs="[{ label: '行业背景' }]"
+      :title="industryPageData.banner.title"
+      :description="industryPageData.banner.description"
+      :breadcrumbs="[{ label: industryPageData.banner.title }]"
     />
 
     <div class="max-w-[1200px] mx-auto px-5">
       <!-- 全球健康挑战与核医学价值 -->
       <section class="py-12 bg-white">
-        <SectionHeader title="全球健康挑战与核医学价值" subtitle="核医学在疾病早期诊断、精准分期、疗效评估及靶向治疗全流程中展现核心价值" />
+        <SectionHeader
+          :title="industryPageData.sectionHeaders.challenges.title"
+          :subtitle="industryPageData.sectionHeaders.challenges.subtitle"
+        />
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div v-for="item in industryChallenges" :key="item.title"
@@ -41,7 +48,10 @@ useSeoMeta({
 
       <!-- 核心驱动力 -->
       <section class="py-12 bg-gray-50/70 border-t border-b border-gray-200/80 mb-16 p-8 rounded-sm">
-        <SectionHeader title="核医学发展的核心驱动力" subtitle="先进成像技术与放射性药物创新研发加速临床落地" />
+        <SectionHeader
+          :title="industryPageData.sectionHeaders.drivers.title"
+          :subtitle="industryPageData.sectionHeaders.drivers.subtitle"
+        />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div v-for="d in industryDrivers" :key="d.title"

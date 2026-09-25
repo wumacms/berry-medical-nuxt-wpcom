@@ -3,6 +3,7 @@ import {
   advantageStats,
   coreAdvantages,
   digitalTwinFeatures,
+  advantagesPageData,
 } from "~/data/advantages";
 
 const { setCanonical, SITE_URL } = useJsonLd();
@@ -21,9 +22,9 @@ useSeoMeta({
   <div class="page-advantages">
     <!-- Top Banner & Breadcrumbs (WPCOM Module 7 Style) -->
     <PageBanner
-      title="专业优势"
-      description="十五年行业积淀与标准参编实力，以自主研发数字孪生技术驱动核医学场所高质量建设"
-      :breadcrumbs="[{ label: '专业优势' }]"
+      :title="advantagesPageData.banner.title"
+      :description="advantagesPageData.banner.description"
+      :breadcrumbs="[{ label: advantagesPageData.banner.title }]"
     />
 
     <!-- 关键数据卡片 (Stats Row) -->
@@ -49,7 +50,10 @@ useSeoMeta({
     <!-- 六大专业能力 -->
     <section id="features" class="py-16 bg-gray-50/70 border-b border-gray-200/80">
       <div class="max-w-[1200px] mx-auto px-5">
-        <SectionHeader title="六大核心优势" subtitle="以高标准防护、合规取证与技术自研驱动服务全方位领先" />
+        <SectionHeader
+          :title="advantagesPageData.sectionHeaders.core.title"
+          :subtitle="advantagesPageData.sectionHeaders.core.subtitle"
+        />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div v-for="(item, idx) in coreAdvantages" :key="idx"
@@ -71,23 +75,23 @@ useSeoMeta({
     <!-- 数字孪生赋能区块 -->
     <section id="digital" class="py-16 bg-white">
       <div class="max-w-[1200px] mx-auto px-5">
-        <SectionHeader title="瑞核V1.0数字孪生系统" subtitle="自主研发面向核医学科场所的下一代智慧物联态势感知运维系统" />
+        <SectionHeader
+          :title="advantagesPageData.sectionHeaders.digital.title"
+          :subtitle="advantagesPageData.sectionHeaders.digital.subtitle"
+        />
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-12">
-          <!-- 左侧描述 -->
+          <!-- 左侧描述（完全数据驱动） -->
           <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
             <h3 class="text-2xl font-bold text-gray-900 tracking-tight">
-              全方位数字化态势感知与运行预警
+              {{ advantagesPageData.digitalTwin.heading }}
             </h3>
-            <p>
-              传统核医学场所运维往往依赖人工巡检和分散的单机仪表，存在空间盲区多、数据滞后和事故预警不足等痛点。贝瑞医疗打造“瑞核V1.0数字孪生运维平台”，实现物理场所与数字空间实时映射。
-            </p>
-            <p>
-              平台实时采集场所各测点的剂量率、通风柜面风速、室内外负压差、衰变池液位等核心安全参数，一旦发现异常立即触发声光及短信多级报警，全天候守护医护与公众安全。
+            <p v-for="(paragraph, pIdx) in advantagesPageData.digitalTwin.paragraphs" :key="pIdx">
+              {{ paragraph }}
             </p>
             <div class="pt-2">
-              <NuxtLink to="/contact" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-sm font-medium px-6 py-2.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group">
-                <span>预约数字孪生系统演示</span>
+              <NuxtLink :to="advantagesPageData.digitalTwin.cta.link" class="inline-flex items-center justify-center gap-2 rounded-sm bg-[#206be7] hover:bg-[#1162e8] text-white text-sm font-medium px-6 py-2.5 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group">
+                <span>{{ advantagesPageData.digitalTwin.cta.text }}</span>
                 <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.75 transition-transform duration-200"></i>
               </NuxtLink>
             </div>

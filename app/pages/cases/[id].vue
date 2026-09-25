@@ -13,8 +13,11 @@ const currentCase = computed<CaseItem>(() => {
   return caseList.find((item) => Number(item.id) === caseId.value) ?? caseList[0]!;
 });
 
-// Gallery images: main image + supporting medical construction images
+// Gallery images: case gallery or main image + supporting medical construction images
 const galleryImages = computed(() => {
+  if (currentCase.value.galleryImages && currentCase.value.galleryImages.length > 0) {
+    return currentCase.value.galleryImages;
+  }
   const base = currentCase.value.imageUrl;
   return [
     base,
@@ -93,19 +96,19 @@ useSeoMeta({
           <div class="bg-slate-50 rounded p-4 mb-5 border border-gray-100">
             <div class="text-[13.5px] py-1.5 border-b border-dashed border-gray-200 flex">
               <span class="text-gray-500 w-[90px] shrink-0">项目分类：</span>
-              <span class="text-gray-900 font-medium">{{ currentCase.categoryLabel }}场所建设</span>
+              <span class="text-gray-900 font-medium">{{ currentCase.specs?.categoryLabel || `${currentCase.categoryLabel}场所建设` }}</span>
             </div>
             <div class="text-[13.5px] py-1.5 border-b border-dashed border-gray-200 flex">
               <span class="text-gray-500 w-[90px] shrink-0">防护等级：</span>
-              <span class="text-gray-900 font-medium">甲级/乙级放射性非密封工作场所</span>
+              <span class="text-gray-900 font-medium">{{ currentCase.specs?.protectionLevel || '甲级/乙级放射性非密封工作场所' }}</span>
             </div>
             <div class="text-[13.5px] py-1.5 border-b border-dashed border-gray-200 flex">
               <span class="text-gray-500 w-[90px] shrink-0">建设周期：</span>
-              <span class="text-gray-900 font-medium">60 - 120 工作日（含验收周期）</span>
+              <span class="text-gray-900 font-medium">{{ currentCase.specs?.duration || '60 - 120 工作日（含验收周期）' }}</span>
             </div>
             <div class="text-[13.5px] py-1.5 flex">
               <span class="text-gray-500 w-[90px] shrink-0">验收支持：</span>
-              <span class="text-gray-900 font-medium">放射诊疗许可证 · 辐射安全许可证 · 药监GMP核查</span>
+              <span class="text-gray-900 font-medium">{{ currentCase.specs?.acceptance || '放射诊疗许可证 · 辐射安全许可证 · 药监GMP核查' }}</span>
             </div>
           </div>
 
@@ -158,33 +161,18 @@ useSeoMeta({
               </button>
             </div>
 
-            <!-- Tab 1: 项目介绍 -->
+            <!-- Tab 1: 项目介绍（富文本模式，与新闻详情页一致） -->
             <div v-if="activeTab === 'intro'" class="text-[15px] text-gray-700 leading-relaxed space-y-4">
-              <p class="leading-relaxed">
-                {{ currentCase.details || currentCase.summary }}
-              </p>
-              <p class="leading-relaxed">
-                在核医学科及放射性工作场所实施过程中，贝瑞医疗团队从前期选址勘测、科室动线优化、辐射屏蔽计算、通风负压设计，到现场防辐射结构实施、铅门防护与观察窗安装、放射性废水多级衰变池铺设，提供全生命周期闭环实施服务。
-              </p>
-
-              <figure class="my-6 rounded-sm overflow-hidden">
-                <img :src="currentCase.imageUrl" :alt="currentCase.title" class="w-full h-auto rounded-sm" />
-                <figcaption class="text-xs text-gray-400 text-center mt-2">{{ currentCase.title }} 实施竣工效果</figcaption>
-              </figure>
-
-              <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4 pl-3 border-l-4 border-[#206be7]">
-                方案特色与实施核心
-              </h2>
-              <p class="leading-relaxed">
-                1. <strong>流程动线科学分区</strong>：严格遵照国家《电离辐射防护与辐射源安全基本标准》(GB 18871-2002) 和《核医学放射防护要求》(GBZ
-                120-2020)，实现受检者通道、医护通道与放射源转运通道物理分离，杜绝交叉污染。
-              </p>
-              <p class="leading-relaxed">
-                2. <strong>高标屏蔽精工保障</strong>：根据核素能量（如F-18、Tc-99m、I-131、Lu-177等）精密计算铅当量厚度，杜绝任何穿墙管线缝隙漏线风险。
-              </p>
-              <p class="leading-relaxed">
-                3. <strong>全流程取证配合</strong>：从环境影响评价报告表编制、放射卫生防护预评价，到控制效果评价及药监GMP飞行检查，保障客户一次性通过环保局与卫健委专家组验收。
-              </p>
+              <div v-if="currentCase.content" class="space-y-4" v-html="currentCase.content" />
+              <template v-else>
+                <p class="leading-relaxed">
+                  {{ currentCase.details || currentCase.summary }}
+                </p>
+                <figure class="my-6 rounded-sm overflow-hidden">
+                  <img :src="currentCase.imageUrl" :alt="currentCase.title" class="w-full h-auto rounded-sm" />
+                  <figcaption class="text-xs text-gray-400 text-center mt-2">{{ currentCase.title }} 实施竣工效果</figcaption>
+                </figure>
+              </template>
             </div>
 
             <!-- Tab 2: 技术规格 -->

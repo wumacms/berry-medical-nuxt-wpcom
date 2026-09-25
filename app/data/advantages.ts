@@ -90,3 +90,56 @@ export const digitalTwinFeatures = [
     icon: "fa-solid fa-triangle-exclamation",
   },
 ];
+
+export interface AdvantagesPageData {
+  banner: {
+    title: string;
+    description: string;
+  };
+  sectionHeaders: {
+    core: {
+      title: string;
+      subtitle: string;
+    };
+    digital: {
+      title: string;
+      subtitle: string;
+    };
+  };
+  digitalTwin: {
+    heading: string;
+    paragraphs: string[];
+    cta: {
+      text: string;
+      link: string;
+    };
+  };
+}
+
+export const advantagesPageData: AdvantagesPageData = {
+  banner: {
+    title: "专业优势",
+    description: "十五年行业积淀与标准参编实力，以自主研发数字孪生技术驱动核医学场所高质量建设",
+  },
+  sectionHeaders: {
+    core: {
+      title: "六大核心优势",
+      subtitle: "以高标准防护、合规取证与技术自研驱动服务全方位领先",
+    },
+    digital: {
+      title: "瑞核V1.0数字孪生系统",
+      subtitle: "自主研发面向核医学科场所的下一代智慧物联态势感知运维系统",
+    },
+  },
+  digitalTwin: {
+    heading: "全方位数字化态势感知与运行预警",
+    paragraphs: [
+      "传统核医学场所运维往往依赖人工巡检和分散的单机仪表，存在空间盲区多、数据滞后和事故预警不足等痛点。贝瑞医疗打造“瑞核V1.0数字孪生运维平台”，实现物理场所与数字空间实时映射。",
+      "平台实时采集场所各测点的剂量率、通风柜面风速、室内外负压差、衰变池液位等核心安全参数，一旦发现异常立即触发声光及短信多级报警，全天候守护医护与公众安全。",
+    ],
+    cta: {
+      text: "预约数字孪生系统演示",
+      link: "/contact",
+    },
+  },
+};

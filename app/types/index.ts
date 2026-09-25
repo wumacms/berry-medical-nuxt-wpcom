@@ -21,6 +21,17 @@ export interface CaseItem {
   tags: string[];
   imageUrl: string;
   details?: string;
+  /** 富文本图文正文（与新闻详情页一致） */
+  content?: string;
+  /** 现场实景组图 */
+  galleryImages?: string[];
+  /** 专属技术指标属性 */
+  specs?: {
+    categoryLabel?: string;
+    protectionLevel?: string;
+    duration?: string;
+    acceptance?: string;
+  };
 }
 
 export interface NewsItem {
@@ -35,6 +46,48 @@ export interface NewsItem {
   content?: string;
   imageUrl: string;
   tags?: string[];
+}
+
+export interface AboutArticleData {
+  id?: string | number;
+  title: string;
+  category?: string;
+  categoryLabel?: string;
+  date?: string;
+  author?: string;
+  readCount?: number;
+  summary: string;
+  content: string;
+  imageUrl?: string;
+  tags?: string[];
+}
+
+export interface AboutPageData {
+  banner: {
+    title: string;
+    description: string;
+  };
+  article: AboutArticleData;
+  title: string;
+  summary: string;
+  content: string;
+  cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+  };
+}
+
+export interface PrivacyPageData {
+  banner: {
+    title: string;
+    description: string;
+  };
+  title: string;
+  date: string;
+  summary: string;
+  content: string;
 }
 
 export interface ServiceChapter {

@@ -116,3 +116,36 @@ export const serviceChapters: ServiceChapter[] = [
     ],
   },
 ];
+
+export interface ServicesPageData {
+  banner: {
+    title: string;
+    description: string;
+  };
+  sectionOverview: {
+    title: string;
+    subtitle: string;
+  };
+  designIntro: string;
+  cta: {
+    text: string;
+    link: string;
+  };
+}
+
+export const servicesPageData: ServicesPageData = {
+  banner: {
+    title: "服务体系",
+    description: "涵盖规划设计、辐射防护施工、衰变池净化工程、设备供应及数字孪生全生命周期闭环服务",
+  },
+  sectionOverview: {
+    title: "三大专业篇章",
+    subtitle: "设计、施工、设备三大篇章，构建核医学场所建设完整交付矩阵",
+  },
+  designIntro:
+    "选址、方案及专项施工图设计：新建、改建项目定制方案，融合功能优化、成本控制与美学设计，严格遵循行业规范，从选址到布局确保辐射防护、制药用药安全及空间利用合理。",
+  cta: {
+    text: "立即预约项目工勘与需求沟通",
+    link: "/contact",
+  },
+};
